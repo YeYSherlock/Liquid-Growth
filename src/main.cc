@@ -5,9 +5,9 @@
 
 int main() {
 
+    std::string a = "Ѩ";
+    print(a);
     
-    print("a");
-
 
 
 
