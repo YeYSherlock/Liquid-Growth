@@ -7,7 +7,8 @@ Liquid Growth is a text based productivity application that runs on the terminal
 The main algorithm-related part is the way the particles are added. We will try to make it as realistic as possible, where each particle seemingly dropped from a random place and spread across the existing particles from previous entries (see the visual demonstration below). A fun part of it is that the particles can overflow from the vase, which we believe will make the user feel proud.
 
 ### third-parties libraries: 
-none besides the standard library. (subject to change)
+None besides the standard library. (subject to change)
 
 ### Our plan: 
-Milestone 2: half done (the entire interface done) Milestone 3: fully done (finalize each detail, add documentation)
+Milestone 2: half done (the entire interface done) 
+Milestone 3: fully done (finalize each detail, add documentation)
