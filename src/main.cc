@@ -1,4 +1,5 @@
 #include "vase.hpp"
+#include "shiny.hpp"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,8 +10,8 @@
 
 
 int main() {
-
-
+    // Testing Vase
+    /*
     srand((unsigned) time(0));
     for (int i = 0; i < 100; i++) {
         print(rand()%6);
@@ -25,6 +26,11 @@ int main() {
         }
         std::cout << std::endl;
     }
+    */
+
+   //Testing Shiny
+    Shiny* piece = new Shiny("Piece", 10, 'p');
+    std::cout <<  piece->ShinyCharacter << " " << piece->ShinyName << " " << piece->ShinySize <<std::endl;
 }
 
 
