@@ -19,10 +19,21 @@ vase::vase(int template_idx) {
 
 
 
-// void vase::addShiny(int num_shiny, string shiny) {
-    
+void vase::addShiny(int num_shiny, string shiny) {
+    if(vase_2d == stamnos) {
 
-// }
+    }
+    if(vase_2d == kalathos) {
+        int col = rand() % 12 + 7; //columns that are inside the container, maybe make a function to find which columns are inside container
+        for(int num = 0; num < num_shiny; num++) {
+            for(size_t row = kalathos.size() - 1; row >=0 && kalathos[row][col] == " "; row--) {
+                kalathos[row + 1][col] = shiny;
+                kalathos[row][col] = " ";
+            }
+        }
+    }
+
+}
 
 
 // int vase::VaseOpeningWidth() {
@@ -79,7 +90,7 @@ const vector<vector<string>> vase::amphora =
         {{}};
 
 // to be drawn (note: have to be a closed vase)
-const vector<vector<string>> vase::kalathos = 
+vector<vector<string>> vase::kalathos = 
         {{}};
 string row1 = "___                     ___";
     
@@ -94,8 +105,7 @@ string row7 = "      |             |      ";
 
 string row8 = "      ⎞             ⎛     ";
 string row9 = "      _⎛___________⎞_     ";
-vector<string> rows = {row1, row2, row3, row4, row5, row6, row7, row8, row9};
-int row_number = 0;
+std::vector<std::string> rows = {row1, row2, row3, row4, row5, row6, row7, row8, row9};
 for(auto row : rows) {
     vector<string> vectorrow;
     for(size_t col = 0; col < row.length(); col++) {

@@ -30,7 +30,7 @@ class vase {
     // 1
     static const vector<vector<string>> amphora;
     // 2
-    static const vector<vector<string>> kalathos;
+    static vector<vector<string>> kalathos;
     // static const vector<vector<string>> lebes;
     // static const vector<vector<string>> pelike;
     // static const vector<vector<string>> pithos;
