@@ -27,6 +27,16 @@ int main() {
         std::cout << std::endl;
     }
     */
+   // Testing
+   /*
+   vase vase(2);
+   for(size_t i = 0; i < vase.kalathos.size(); i++) {
+        for(size_t j = 0; j < vase.kalathos[i].size(); j++) {
+            std::cout << vase.kalathos[i][j];
+        }
+        std::cout << std::endl;
+    }
+    */
 
    //Testing Shiny
     Shiny* piece = new Shiny("Piece", 10, 'p');
