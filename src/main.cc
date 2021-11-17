@@ -41,6 +41,13 @@ int main() {
    //Testing Shiny
     Shiny* piece = new Shiny("Piece", 10, 'p');
     std::cout <<  piece->ShinyCharacter << " " << piece->ShinyName << " " << piece->ShinySize <<std::endl;
+
+
+
+
+
+
+    
 }
 
 
