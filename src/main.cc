@@ -10,11 +10,12 @@
 
 
 int main() {
-    // Testing Vase
-    /*
+
+
+    
     srand((unsigned) time(0));
     for (int i = 0; i < 100; i++) {
-        print(rand()%6);
+        print(rand()%9);
     }
 
 
@@ -26,7 +27,14 @@ int main() {
         }
         std::cout << std::endl;
     }
-    */
+
+
+
+
+
+
+
+
    // Testing
    /*
    vase vase(2);
@@ -39,8 +47,8 @@ int main() {
     */
 
    //Testing Shiny
-    Shiny* piece = new Shiny("Piece", 10, 'p');
-    std::cout <<  piece->ShinyCharacter << " " << piece->ShinyName << " " << piece->ShinySize <<std::endl;
+    // Shiny* piece = new Shiny("Piece", 10, 'p');
+    // std::cout <<  piece->ShinyCharacter << " " << piece->ShinyName << " " << piece->ShinySize <<std::endl;
 
 
 
