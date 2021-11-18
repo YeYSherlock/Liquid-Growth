@@ -13,43 +13,28 @@ int main() {
 
 
     
-    srand((unsigned) time(0));
-    for (int i = 0; i < 100; i++) {
-        print(rand()%9);
-    }
+    // srand((unsigned) time(0));
+    // for (int i = 0; i < 100; i++) {
+    //     print(rand()%9);
+    // }
 
 
-    vase vase(0);
+    Vase vase(0);
+    // vase.addShiny(5, "x", "hellooooo madam");
+    // vase.addShiny(5, "O", "hellooooo madam");
 
-    for (size_t i = 0; i < vase.stamnos.size(); i++) {
-        for (size_t j = 0; j < vase.stamnos.at(i).size(); j++) {
-            std::cout << vase.stamnos.at(i).at(j);
+    for (size_t i = 0; i < 20; i++) {
+        for (size_t j = 0; j < 40; j++) {
+            // if (vase.shinyAt(i, j) != " ") {
+            //     std::cout << vase.shinyAt(i, j);
+            // } else {
+            //     std::cout << vase.vase_.at(i).substr(j, 1);
+            // }
+            std::cout << vase.vase_.at(i).substr(j, 1);
+
         }
         std::cout << std::endl;
     }
-
-
-
-
-
-
-
-
-   // Testing
-   /*
-   vase vase(2);
-   for(size_t i = 0; i < vase.kalathos.size(); i++) {
-        for(size_t j = 0; j < vase.kalathos[i].size(); j++) {
-            std::cout << vase.kalathos[i][j];
-        }
-        std::cout << std::endl;
-    }
-    */
-
-   //Testing Shiny
-    // Shiny* piece = new Shiny("Piece", 10, 'p');
-    // std::cout <<  piece->ShinyCharacter << " " << piece->ShinyName << " " << piece->ShinySize <<std::endl;
-
 
 
 

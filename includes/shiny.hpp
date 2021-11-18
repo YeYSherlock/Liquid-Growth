@@ -1,14 +1,19 @@
-#ifndef NODE_HPP
-#define NODE_HPP
+#ifndef SHINY_HPP
+#define SHINY_HPP
 
 #include <string>
+#include <vector>
+#include <iostream>
+using std::vector;
+using std::string;
 
-struct Shiny {
-  Shiny() = default;
-  Shiny(std::string name, int size, int character) : ShinyName(name), ShinySize(size), ShinyCharacter(character){}
-  std::string ShinyName;
-  int ShinySize;
-  char ShinyCharacter;
+class Shiny {
+  public:
+  Shiny(size_t num_shiny, string unicode, std::string log);
+  size_t num_shiny_;
+  string unicode_;
+  string log_;
+  vector<string> shiny_vec_;
 };
 
 #endif

@@ -21,7 +21,7 @@ open_tests:
 clean:
 	rm -f bin/*
 
-bin/main.out: src/main.cc src/vase.cc
+bin/main.out: src/main.cc src/vase.cc src/shiny.cc
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 bin/tests.out: tests/tests.cc src/main.cc src/vase.cc

@@ -3,14 +3,20 @@
 
 
 
-vase::vase(int template_idx) {
-    // initializee template_idx
+Vase::Vase(size_t template_idx) {
+    // initialize
     if (template_idx == 0) {
         vase_ = stamnos;
+        vase_opening_left = stamnos_opening_left_idx;
+        vase_opening_right = stamnos_opening_right_idx;
     } else if (template_idx == 1) {
         vase_ = amphora;
+        vase_opening_left = amphora_opening_left_idx;
+        vase_opening_right = amphora_opening_right_idx;
     } else if (template_idx == 2) {
         vase_ = kalathos;
+        vase_opening_left = kalathos_opening_left_idx;
+        vase_opening_right = kalathos_opening_right_idx;
     } else {
         throw std::runtime_error("template idx out of bound");
     }
@@ -20,7 +26,70 @@ vase::vase(int template_idx) {
 
 
 
-// void vase::addShiny(int num_shiny, string shiny) {
+void Vase::addShiny(size_t num_shiny, string unicode, string log) {
+    srand((unsigned) time(0));
+    size_t drop_idx = 0;
+    for (size_t i = 0; i < 5; i++) {
+        drop_idx += (vase_opening_left + rand()%(vase_opening_right - vase_opening_left));
+    }
+    // drop_idx = drop_idx / 5;
+    drop_idx = 20;
+
+    Shiny* new_shiny = new Shiny(num_shiny, unicode, log);
+    shiny_vec.push_back(new_shiny);
+    addShinyAtPosition(num_shiny, unicode, drop_idx, new_shiny);
+
+}
+
+void Vase::addShinyAtPosition(size_t num_shiny, string unicode, size_t drop_idx, Shiny* new_shiny) {
+    
+    // base case
+    if (num_shiny == 0) {
+        return;
+    }
+    
+    for (size_t row = 0; row < 20; row++) {
+        if (IsSpace(row, drop_idx)) {
+            // continue falling 
+        } else {
+            // generate random num
+            int position_num;
+            // left right both empty
+            if (IsSpace(row, drop_idx - 1) && IsSpace(row, drop_idx + 1)) {
+                position_num = (rand()%(3));// 0, 1, 2
+                position_num--;
+            } 
+            // left empty
+            else if (IsSpace(row, drop_idx - 1)) {
+                position_num = (rand()%(2));// 0, 1
+                position_num--;
+            }
+            // right empty
+            else if (IsSpace(row, drop_idx + 1)) {
+                position_num = (rand()%(2));// 0, 1
+            }
+            // both full
+            else {
+                position_num = 0;
+            }
+            // int position_num = 0;
+
+
+            if (position_num == -1) {
+                addShinyAtPosition(num_shiny, unicode, drop_idx - 1, new_shiny);
+            } else if (position_num == 1) {
+                addShinyAtPosition(num_shiny, unicode, drop_idx + 1, new_shiny);
+
+            } else {
+                
+                std::cout << drop_idx ;
+                new_shiny->shiny_vec_.at(row - 1).replace(drop_idx, 1, unicode);
+                addShinyAtPosition(num_shiny - 1, unicode, drop_idx, new_shiny);
+            }
+            return;
+        }
+    }
+}
 
 
 
@@ -29,40 +98,37 @@ vase::vase(int template_idx) {
 
 
 
-//     // if(vase_2d == stamnos) {
-
-//     // }
-//     // if(vase_2d == kalathos) {
-//     //     int col = rand() % 12 + 7; //columns that are inside the container, maybe make a function to find which columns are inside container
-//     //     for(int num = 0; num < num_shiny; num++) {
-//     //         for(size_t row = kalathos.size() - 1; row >=0 && kalathos[row][col] == " "; row--) {
-//     //             kalathos[row + 1][col] = shiny;
-//     //             kalathos[row][col] = " ";
-//     //         }
-//     //     }
-//     // }
-// }
 
 
+bool Vase::IsSpace(size_t row_idx, size_t col_idx) {
+    if (vase_.at(row_idx).substr(col_idx, 1) != " ") {
+        return false;
+    }
+    for (Shiny* shiny : shiny_vec) {
+        if (shiny->shiny_vec_.at(row_idx).substr(col_idx, 1) != " ") {
+            return false;
+        }
+    }
+    return true;
+}
 
 
-
-
-// int vase::VaseOpeningWidth() {
-//     for (size_t row = 0; row < 20; row++) {
-//         if 
-//     }
-// }
-
-
+string Vase::shinyAt(size_t row_idx, size_t col_idx) {
+    for (Shiny* shiny : shiny_vec) {
+        if (shiny->shiny_vec_.at(row_idx).substr(col_idx, 1) != " ") {
+            // std::cout << "[" << shiny->shiny_vec_.at(row_idx).substr(col_idx, 1) << "]" << std::endl;
+            return shiny->shiny_vec_.at(row_idx).substr(col_idx, 1);
+        }
+    }
+    return " ";
+}
 
 
 
 
 
 
-
-const vector<string> vase::stamnos = 
+const vector<string> Vase::stamnos = 
 {
     {"                                        "},
     {"                                        "},
@@ -80,8 +146,8 @@ const vector<string> vase::stamnos =
     {"          ⎛                 ⎞           "},
     {"       ⎛‾‾                   ‾‾⎞        "},
     {"        ‾‾⎝                 ⎠‾‾         "},
-    {"           \               /            "},
-    {"             \___      ___/             "},
+    {"           \\               /            "},
+    {"            \\___       ___/             "},
     {"                ⎛      ⎞                "},
     {"                 ‾‾‾‾‾‾                 "}
 };
@@ -112,11 +178,11 @@ const vector<string> vase::stamnos =
     //     };
 
 // to be drawn (note: have to be a closed vase)
-const vector<string> vase::amphora = 
+const vector<string> Vase::amphora = 
         {{}};
 
 // to be drawn (note: have to be a closed vase)
-const vector<string> vase::kalathos = 
+const vector<string> Vase::kalathos = 
         {{}};
 
 // vector<vector<string>> vase::kalathos = 
