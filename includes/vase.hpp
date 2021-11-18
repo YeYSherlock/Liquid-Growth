@@ -19,7 +19,7 @@ public:
     Vase(size_t template_idx, size_t month, size_t date, size_t year, string day, string mood, string weather);
     void ToString();
     void addShiny(size_t num_shiny, string unicode, string log);
-
+    ~Vase();
 
 
 
