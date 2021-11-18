@@ -13,7 +13,7 @@ class Shiny {
   size_t num_shiny_;
   string unicode_;
   string log_;
-  vector<string> shiny_vec_;
+  vector<vector<string>> shiny_vec_;
 };
 
 #endif

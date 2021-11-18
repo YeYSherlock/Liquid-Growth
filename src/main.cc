@@ -12,33 +12,20 @@
 int main() {
 
 
-    
-    // srand((unsigned) time(0));
-    // for (int i = 0; i < 100; i++) {
-    //     print(rand()%9);
-    // }
-
-
-    Vase vase(0);
-    // vase.addShiny(5, "x", "hellooooo madam");
-    // vase.addShiny(5, "O", "hellooooo madam");
-
-    for (size_t i = 0; i < 20; i++) {
-        for (size_t j = 0; j < 40; j++) {
-            // if (vase.shinyAt(i, j) != " ") {
-            //     std::cout << vase.shinyAt(i, j);
-            // } else {
-            //     std::cout << vase.vase_.at(i).substr(j, 1);
-            // }
-            std::cout << vase.vase_.at(i).substr(j, 1);
-
-        }
-        std::cout << std::endl;
-    }
+    Vase vase(0, 11, 18, 2021, "Thursday", "Superb!", "Sunny");
+    vase.addShiny(28, "Ѿ", "finished laundry");
+    vase.addShiny(9, "Ǥ", "changed schedule: Math 416");
+    vase.addShiny(10, "Ф", "25 minutes study block for CS");
+    vase.addShiny(10, "Ѯ", "started TRA");
+    vase.addShiny(36, "Ѻ", "finished TRA");
+    vase.addShiny(8, "Ѿ", "project");
+    vase.addShiny(20, "Ѯ", "25 minutes study block for Math");
+    vase.addShiny(36, "Ѻ", "25 minutes study block for Math");
+    vase.addShiny(30, "Ѿ", "25 minutes study block for Math");
 
 
 
-
+    vase.ToString();
 
     
 }
