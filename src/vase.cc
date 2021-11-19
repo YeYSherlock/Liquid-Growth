@@ -105,7 +105,7 @@ void Vase::addShinyAtPosition(size_t num_shiny, size_t drop_row, string unicode,
 
     // ensuring it stays within horizontal bound (0 ~ 19)
     if (drop_row <= 0) {
-        drop_row = 0;
+        drop_row = 1;
     } else if (drop_row >= 19) {
         drop_row = 19;
     }    

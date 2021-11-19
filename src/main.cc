@@ -13,15 +13,15 @@ int main() {
 
 
     Vase vase(0, 11, 18, 2021, "Thursday", "Superb!", "Sunny");
-    vase.addShiny(100, "Ѿ", "finished laundry");
-    // vase.addShiny(9, "Ǥ", "changed schedule: Math 416");
-    // vase.addShiny(10, "Ф", "25 minutes study block for CS");
-    // vase.addShiny(10, "Ѯ", "started TRA");
-    // vase.addShiny(36, "Ѻ", "finished TRA");
-    // vase.addShiny(8, "Ѿ", "project");
-    // vase.addShiny(20, "Ѯ", "25 minutes study block for Math");
-    // vase.addShiny(36, "Ѻ", "25 minutes study block for Math");
-    // vase.addShiny(30, "Ф", "25 minutes study block for Math");
+    vase.addShiny(60, "Ѿ", "finished laundry");
+    vase.addShiny(9, "Ǥ", "changed schedule: Math 416");
+    vase.addShiny(40, "Ф", "25 minutes study block for CS");
+    vase.addShiny(30, "Ѯ", "started TRA");
+    vase.addShiny(36, "Ѻ", "finished TRA");
+    vase.addShiny(8, "Ѿ", "project");
+    vase.addShiny(20, "Ѯ", "25 minutes study block for Math");
+    vase.addShiny(36, "Ѻ", "25 minutes study block for Math");
+    vase.addShiny(30, "Ф", "25 minutes study block for Math");
 
 
 
