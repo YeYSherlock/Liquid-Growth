@@ -75,10 +75,6 @@ std::cout << " + cd @/@/@ >> check vase of the day" << std::endl;
     std::cout << "+----------------------------------------+" << std::endl;
 
 }
-
-
-
-
 void Vase::addShiny(size_t num_shiny, string unicode, string log) {
     // make random value between vase_opening_right and vase_opening_left
     srand((unsigned) time(0));
@@ -91,8 +87,14 @@ void Vase::addShiny(size_t num_shiny, string unicode, string log) {
 
     Shiny* new_shiny = new Shiny(num_shiny, unicode, log);
     shiny_vec.push_back(new_shiny);
-    addShinyAtPosition(num_shiny, 0, unicode, drop_idx, new_shiny);
-
+    //addShinyAtPosition(num_shiny, 0, unicode, drop_idx, new_shiny);
+    for(size_t i = 0; i < num_shiny; i++){
+        addShinyAtPosition2( 0, unicode, drop_idx, new_shiny);
+        std::cout << i << " !!!!!!!!!!!!" <<std::endl;
+        if(i > 10 && i < 30){
+            ToString();
+        }
+    }
 }
 
 void Vase::addShinyAtPosition(size_t num_shiny, size_t drop_row, string unicode, size_t drop_idx, Shiny* new_shiny) {
@@ -156,14 +158,69 @@ void Vase::addShinyAtPosition(size_t num_shiny, size_t drop_row, string unicode,
     }
 }
 
+void Vase::addShinyAtPosition2(size_t drop_row, string unicode, size_t drop_idx, Shiny* new_shiny) {
+    // ensuring it stays within vertical bound (0 ~ 39)
+    if (drop_idx >= 39) {
+        drop_idx = 39;
+    } else if (drop_idx <= 0) {
+        drop_idx = 0;
+    }
 
+    // ensuring it stays within horizontal bound (0 ~ 19)
+    if (drop_row <= 0) {
+        drop_row = 1;
+    } else if (drop_row >= 19) {
+        drop_row = 19;
+    }    
+    
+    if (IsSpace(drop_row + 1, drop_idx)) {
+        //Continue Falling
+        addShinyAtPosition2(drop_row + 1, unicode, drop_idx, new_shiny);
+    }else{
+        //Reach Ground
+        int left_height;
+        int right_height;
+        if(drop_idx - 1 < 0){
+            //left wall
+            left_height = 0;
+        }else{
+            left_height = TowerHieght(drop_row,drop_idx - 1);
+        }
 
+        if(drop_idx + 1 > 39){
+            // right wall
+            right_height = 0;
+        }else{
+            right_height = TowerHieght(drop_row,drop_idx + 1);
+        }
 
+        std::cout << "Left tower " << left_height <<std::endl;
+        std::cout << "Right tower " << right_height <<std::endl;
 
+        if(left_height > 2 ){
+            // Tower collapse to left 
+            addShinyAtPosition2(drop_row  + 1, unicode, drop_idx - 1, new_shiny);
+        }else if(right_height > 2){
+            // Tower collapse to right
+            addShinyAtPosition2(drop_row  + 1, unicode, drop_idx + 1, new_shiny);
+        }else if(left_height > 1 && rand() % 2 == 0 ){
+            addShinyAtPosition2(drop_row  + 1, unicode, drop_idx - 1, new_shiny);
+        }else if(right_height > 1 && rand() % 2 == 0 ){
+            addShinyAtPosition2(drop_row  + 1, unicode, drop_idx + 1, new_shiny);
+        }else{
+            //Shiny Settled
+            new_shiny->shiny_vec_.at(drop_row).at(drop_idx) = unicode;
+        }
+    }
+}
 
-
-
-
+int Vase::TowerHieght(size_t row,size_t col){
+    if(!IsSpace(row,col)){
+        return 0;
+    }else{
+        return TowerHieght(row+1, col) + 1;
+    }
+}
 
 bool Vase::IsSpace(size_t row_idx, size_t col_idx) {
     // iterating through vase template itself
@@ -220,8 +277,8 @@ const vector<vector<string>> Vase::stamnos =
         {" ", " ", " ", " ", " ", " ", " ", " ", "⎛", "‾", "‾", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "‾", "‾", "⎞", " ", " ", " ", " ", " ", " ", " "},
         {" ", " ", " ", " ", " ", " ", " ", " ", " ", "‾", "‾", "⎝", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "⎠", "‾", "‾", " ", " ", " ", " ", " ", " ", " ", " "},
         {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ","\\", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "/", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "\\","_", "_", "_", " ", " ", " ", " ", " ", " ", " ", "_", "_", "_", "/", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
-        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "⎛", " ", " ", " ", " ", " ", " ", " ", "⎞", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "\\"," ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "/", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "‾", "‾", "⎛", " ", " ", " ", " ", " ", " ", " ", "⎞", "‾", "‾", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
         {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "‾", "‾", "‾", "‾", "‾", "‾", "‾", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
         };
 // {
@@ -242,8 +299,8 @@ const vector<vector<string>> Vase::stamnos =
 //     {"       ⎛‾‾                   ‾‾⎞        "},
 //     {"        ‾‾⎝                 ⎠‾‾         "},
 //     {"           \\               /            "},
-//     {"            \\___       ___/             "},
-//     {"                ⎛      ⎞                "},
+//     {"            \\            /             "},
+//     {"              ‾‾⎛      ⎞‾‾                "},
 //     {"                 ‾‾‾‾‾‾                 "}
 // };
 
