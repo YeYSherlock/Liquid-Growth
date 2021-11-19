@@ -20,7 +20,7 @@ public:
     void ToString();
     void addShiny(size_t num_shiny, string unicode, string log);
     void SaveFile();
-    void LoadFile();
+    void LoadFile(std::string filename);
     ~Vase();
 
 

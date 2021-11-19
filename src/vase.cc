@@ -202,8 +202,8 @@ void Vase::addShinyAtPosition2(size_t drop_row, string unicode, size_t drop_idx,
             right_height = TowerHieght(drop_row,drop_idx + 1);
         }
 
-        std::cout << "Left tower " << left_height <<std::endl;
-        std::cout << "Right tower " << right_height <<std::endl;
+        //std::cout << "Left tower " << left_height <<std::endl;
+        //std::cout << "Right tower " << right_height <<std::endl;
 
         if(left_height > 2 ){
             // Tower collapse to left 
@@ -254,8 +254,8 @@ string Vase::shinyAt(size_t row_idx, size_t col_idx) {
     }
     return " ";
 }
-void SaveFile() {
-    std::string filename = std::to_string(date[0]) + "_" std::to_string(date[1]) + "_" std::to_string(date[2]);
+void Vase::SaveFile() {
+    std::string filename = std::to_string(date_[0]) + "_" + std::to_string(date_[1]) + "_" + std::to_string(date_[2]);
     // Create an output filestream object
     std::ofstream saveFile(filename);
     //Save type of vase
@@ -285,15 +285,15 @@ void SaveFile() {
     for (Shiny* shiny : shiny_vec) {
         if (shiny->num_shiny_ >= 10) {
 
-            myFile << "| " << shiny->num_shiny_ << " " << shiny->unicode_ << " << "  << shiny->log_ << std::endl;
+            saveFile << "| " << shiny->num_shiny_ << " " << shiny->unicode_ << " << "  << shiny->log_ << std::endl;
         } else {
-            myFile << "| _" << shiny->num_shiny_ << " " << shiny->unicode_ << " << "  << shiny->log_ << std::endl;        }
+            saveFile << "| _" << shiny->num_shiny_ << " " << shiny->unicode_ << " << "  << shiny->log_ << std::endl;        }
     }
     // close file
     saveFile.close();
 
 }
-void LoadFile(std::string filename) {
+void Vase::LoadFile(std::string filename) {
     vector<vector<string>> vase;
     std::ifstream saveFile(filename);
     if(!saveFile.is_open()) {
@@ -306,7 +306,7 @@ void LoadFile(std::string filename) {
     //get the vase
     if(saveFile.good()) {
         // Get the first line in the file
-        std::getline(myFile, line);
+        std::getline(saveFile, line);
         if(line == "stamnos") {
             vase_ = stamnos;
         }
@@ -321,9 +321,11 @@ void LoadFile(std::string filename) {
              for(size_t col = 0; col < line.length(); col++) {
                 string c;
                 c.push_back(line[col]);
-                vectorrow.push_back(c);
+                current_row.push_back(c);
+                std::cout << c <<std::endl;
              }
              vase_.push_back(current_row);
+             //std::cout << current_row << std::endl;
          }
     }
     //get all the other attributes
