@@ -78,25 +78,29 @@ std::cout << " + cd @/@/@ >> check vase of the day" << std::endl;
 void Vase::addShiny(size_t num_shiny, string unicode, string log) {
     // make random value between vase_opening_right and vase_opening_left
     srand((unsigned) time(0));
-    size_t drop_idx = 0;
-    for (size_t i = 0; i < 5; i++) {
-        drop_idx += (vase_opening_left + rand()%(vase_opening_right - vase_opening_left));
-    }
-    drop_idx = drop_idx / 5;
     // drop_idx = 20;
 
     Shiny* new_shiny = new Shiny(num_shiny, unicode, log);
     shiny_vec.push_back(new_shiny);
-    //addShinyAtPosition(num_shiny, 0, unicode, drop_idx, new_shiny);
-    /*
-    // Shiny having brick property
-    for(size_t i = 0; i < num_shiny; i++){
-        addShinyAtPosition2( 0, unicode, drop_idx, new_shiny);
-    }
-    */
-    // Shiny having sand property
-    for(size_t i = 0; i < num_shiny; i++){
-        addShinyAtPosition2( 0, unicode, (vase_opening_left + rand()%(vase_opening_right - vase_opening_left)), new_shiny);
+    //addShiny(num_shiny,unicode,"Low Friction",new_shiny);
+    addShiny(num_shiny,unicode,"High Friction", new_shiny);
+    
+}
+
+void Vase::addShiny(size_t num_shiny, string unicode,string friction,Shiny* new_shiny){
+    if(friction == "Low Friction"){
+        for(size_t i = 0; i < num_shiny; i++){
+            addShinyAtPosition2( 0, unicode, (vase_opening_left + rand()%(vase_opening_right - vase_opening_left - 1) + 1), new_shiny);
+        }
+    }else{
+        size_t drop_idx = 0;
+        for (size_t i = 0; i < 5; i++) {
+            drop_idx += (vase_opening_left + rand()%(vase_opening_right - vase_opening_left));
+        }
+        drop_idx = drop_idx / 5;
+        for(size_t i = 0; i < num_shiny; i++){
+            addShinyAtPosition2( 0, unicode, drop_idx, new_shiny);
+        }
     }
 }
 
