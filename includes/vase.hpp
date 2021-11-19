@@ -28,8 +28,10 @@ private:
     string day_;
     string mood_;
     string weather_;
+
     vector<vector<string>> vase_;
     vector<Shiny*> shiny_vec;
+    
     size_t vase_opening_left;
     size_t vase_opening_right;
     int VaseOpeningWidth();

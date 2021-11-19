@@ -33,6 +33,20 @@ Vase::Vase(size_t template_idx, size_t month, size_t date, size_t year, string d
 }
 
 void Vase::ToString() {
+
+std::cout << "[Menu]" << std::endl;
+std::cout << " + next     >> check vase of the next day" << std::endl;
+std::cout << " + prev     >> check vase of the previous day" << std::endl;
+std::cout << " + add #    >> add entry (only allowed for today)" << std::endl;
+std::cout << " + undo     >> undo last entry (only allowed for today)" << std::endl;
+std::cout << " + log @    >> add text to log." << std::endl;
+std::cout << " + day @    >> change day" << std::endl;
+std::cout << " + mood @   >> change mood" << std::endl;
+std::cout << " + weat @   >> change weather" << std::endl;
+std::cout << " + cd @/@/@ >> check vase of the day" << std::endl;
+
+    
+    
     // print vase and all shiny
     for (size_t i = 0; i < 20; i++) {
         for (size_t j = 0; j < 40; j++) {
@@ -66,6 +80,7 @@ void Vase::ToString() {
 
 
 void Vase::addShiny(size_t num_shiny, string unicode, string log) {
+    // make random value between vase_opening_right and vase_opening_left
     srand((unsigned) time(0));
     size_t drop_idx = 0;
     for (size_t i = 0; i < 5; i++) {
@@ -109,12 +124,12 @@ void Vase::addShinyAtPosition(size_t num_shiny, size_t drop_row, string unicode,
             // left right both empty
             if (IsSpace(row, drop_idx - 1) && IsSpace(row, drop_idx + 1)) {
                 position_num = (rand()%(3));// 0, 1, 2
-                position_num--;
+                position_num--; // -1, 0, 1
             } 
             // left empty
             else if (IsSpace(row, drop_idx - 1)) {
                 position_num = (rand()%(2));// 0, 1
-                position_num--;
+                position_num--; // -1, 0
             }
             // right empty
             else if (IsSpace(row, drop_idx + 1)) {
@@ -151,9 +166,11 @@ void Vase::addShinyAtPosition(size_t num_shiny, size_t drop_row, string unicode,
 
 
 bool Vase::IsSpace(size_t row_idx, size_t col_idx) {
+    // iterating through vase template itself
     if (vase_.at(row_idx).at(col_idx) != " ") {
         return false;
     }
+    // iterating through each shiny class and check if it is " "
     for (Shiny* shiny : shiny_vec) {
         if (shiny->shiny_vec_.at(row_idx).at(col_idx) != " ") {
             return false;
