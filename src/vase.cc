@@ -1,6 +1,7 @@
 #include "vase.hpp"
 #include <random>
-
+#include <fstream>
+#include <sstream> 
 
 
 Vase::Vase(size_t template_idx) {
@@ -252,6 +253,82 @@ string Vase::shinyAt(size_t row_idx, size_t col_idx) {
         }
     }
     return " ";
+}
+void SaveFile() {
+    std::string filename = std::to_string(date[0]) + "_" std::to_string(date[1]) + "_" std::to_string(date[2]);
+    // Create an output filestream object
+    std::ofstream saveFile(filename);
+    //Save type of vase
+    if(!stamnos.empty()) {
+        saveFile << "stamnos" << std::endl;
+    }
+    else if(!amphora.empty()) {
+        saveFile << "amphora" << std::endl;
+    }
+    else if (!kalathos.empty()) {
+        saveFile << "amphora" << std::endl;
+    }
+    for (size_t i = 0; i < 20; i++) {
+        for (size_t j = 0; j < 40; j++) {
+            if (shinyAt(i, j) != " ") {
+                saveFile << shinyAt(i, j);
+            } else {
+                saveFile << vase_.at(i).at(j);
+            }
+        }
+        saveFile << std::endl;
+    }
+
+    // save all other attributes
+    saveFile << "[" << day_ << "] " << "[Mood: " << mood_ << "] " << "[Weather: " << weather_ << "]" << std::endl;
+    saveFile << "+--------------[" << date_[0] << "/" << date_[1] << "/" << date_[2] << "]" << "--------------+" << std::endl;
+    for (Shiny* shiny : shiny_vec) {
+        if (shiny->num_shiny_ >= 10) {
+
+            myFile << "| " << shiny->num_shiny_ << " " << shiny->unicode_ << " << "  << shiny->log_ << std::endl;
+        } else {
+            myFile << "| _" << shiny->num_shiny_ << " " << shiny->unicode_ << " << "  << shiny->log_ << std::endl;        }
+    }
+    // close file
+    saveFile.close();
+
+}
+void LoadFile(std::string filename) {
+    vector<vector<string>> vase;
+    std::ifstream saveFile(filename);
+    if(!saveFile.is_open()) {
+        throw std::runtime_error("Could not open file");
+    }
+    // Helper vars
+    string line;
+    int row = 0;
+
+    //get the vase
+    if(saveFile.good()) {
+        // Get the first line in the file
+        std::getline(myFile, line);
+        if(line == "stamnos") {
+            vase_ = stamnos;
+        }
+        else if(line == "amphora") {
+            vase_ = amphora;
+        }
+        else if (line == "kalathos") {
+            vase_ = kalathos;
+        }
+         while(std::getline(saveFile, line) && row != 20) {
+             vector<string> current_row;
+             for(size_t col = 0; col < line.length(); col++) {
+                string c;
+                c.push_back(line[col]);
+                vectorrow.push_back(c);
+             }
+             vase_.push_back(current_row);
+         }
+    }
+    //get all the other attributes
+
+
 }
 
 
