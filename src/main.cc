@@ -28,9 +28,10 @@ int main() {
 
     vase.ToString();
     vase.SaveFile();
-    Vase vase_l(0);
+    Vase vase_l(0); //make vase to load save file into
     vase_l.LoadFile("11_18_2021");
     vase_l.ToString();
+    //vase_l.SaveFile();
     
     
 }
