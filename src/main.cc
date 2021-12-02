@@ -13,30 +13,30 @@ int main() {
 
 
     Vase vase(0, 11, 18, 2021, "Thursday", "Superb!", "Sunny");
-    vase.addShiny(50, "Ѿ", "finished laundry");
-    vase.addShiny(9, "Ǥ", "changed schedule: Math 416");
-    vase.addShiny(9, "Ѯ", "changed schedule: Math 416");
-    vase.addShiny(9, "Ф", "changed schedule: Math 416");
-    vase.addShiny(9, "Ѻ", "changed schedule: Math 416");
     vase.addShiny(10, "Ѿ", "finished laundry");
-    vase.addShiny(9, "Ǥ", "changed schedule: Math 416");
-    vase.addShiny(9, "Ѯ", "changed schedule: Math 416");
-    vase.addShiny(9, "Ф", "changed schedule: Math 416");
-    vase.addShiny(9, "Ѻ", "changed schedule: Math 416");
-    vase.addShiny(10, "Ѿ", "finished laundry");
-    vase.addShiny(9, "Ǥ", "changed schedule: Math 416");
-    vase.addShiny(9, "Ѯ", "changed schedule: Math 416");
-    vase.addShiny(9, "Ф", "changed schedule: Math 416");
-    vase.addShiny(9, "Ѻ", "changed schedule: Math 416");
-    vase.addShiny(9, "Ǥ", "changed schedule: Math 416");
-    vase.addShiny(9, "Ѯ", "changed schedule: Math 416");
-    vase.addShiny(9, "Ф", "changed schedule: Math 416");
-    vase.addShiny(9, "Ѻ", "changed schedule: Math 416");
-    vase.addShiny(10, "Ѿ", "finished laundry");
-    vase.addShiny(9, "Ǥ", "changed schedule: Math 416");
-    vase.addShiny(9, "Ѯ", "changed schedule: Math 416");
-    vase.addShiny(9, "Ф", "changed schedule: Math 416");
-    vase.addShiny(9, "Ѻ", "changed schedule: Math 416");
+    // vase.addShiny(9, "Ǥ", "changed schedule: Math 416");
+    // vase.addShiny(18, "Ѯ", "Worked on TRA");
+    // vase.addShiny(29, "Ф", "Finished TRA");
+    // vase.addShiny(16, "Ѻ", "Working on Final Project");
+    // vase.addShiny(10, "Ѿ", "Final Project Presentation Prep");
+    // vase.addShiny(9, "Ǥ", "changed schedule: Math 416");
+    // vase.addShiny(9, "Ѯ", "changed schedule: Math 416");
+    // vase.addShiny(9, "Ф", "changed schedule: Math 416");
+    // vase.addShiny(9, "Ѻ", "changed schedule: Math 416");
+    // vase.addShiny(10, "Ѿ", "finished laundry");
+    // vase.addShiny(9, "Ǥ", "changed schedule: Math 416");
+    // vase.addShiny(9, "Ѯ", "changed schedule: Math 416");
+    // vase.addShiny(9, "Ф", "changed schedule: Math 416");
+    // vase.addShiny(9, "Ѻ", "changed schedule: Math 416");
+    // vase.addShiny(9, "Ǥ", "changed schedule: Math 416");
+    // vase.addShiny(9, "Ѯ", "changed schedule: Math 416");
+    // vase.addShiny(9, "Ф", "changed schedule: Math 416");
+    // vase.addShiny(9, "Ѻ", "changed schedule: Math 416");
+    // vase.addShiny(10, "Ѿ", "finished laundry");
+    // vase.addShiny(9, "Ǥ", "changed schedule: Math 416");
+    // vase.addShiny(9, "Ѯ", "changed schedule: Math 416");
+    // vase.addShiny(9, "Ф", "changed schedule: Math 416");
+    // vase.addShiny(9, "Ѻ", "changed schedule: Math 416");
     /*
     vase.addShiny(40, "Ф", "25 minutes study block for CS");
     vase.addShiny(30, "Ѯ", "started TRA");
@@ -51,8 +51,8 @@ int main() {
     vase.ToString();
     vase.SaveFile();
     Vase vase_l(0);
-    vase_l.LoadFile("11_18_2021");
-    vase_l.ToString();
+    // vase_l.LoadFile("11_18_2021");
+    // vase_l.ToString();
     
     
 }
