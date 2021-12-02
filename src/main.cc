@@ -11,9 +11,12 @@
 
 int main() {
 
+    // 1. load all data from saved files
+    // 2. 
 
-    Vase vase(0, 11, 18, 2021, "Thursday", "Superb!", "Sunny");
-    vase.addShiny(10, "Ѿ", "finished laundry");
+
+    // Vase vase(0, 11, 18, 2021, "Thursday", "Superb!", "Sunny");
+    // vase.addShiny(10, "Ѿ", "finished laundry");
     // vase.addShiny(9, "Ǥ", "changed schedule: Math 416");
     // vase.addShiny(18, "Ѯ", "Worked on TRA");
     // vase.addShiny(29, "Ф", "Finished TRA");
@@ -48,13 +51,12 @@ int main() {
     */
 
 
-    vase.ToString();
-    vase.SaveFile();
+    // vase.ToString();
+    // vase.SaveFile();
 
     Vase vase_l(0);
     vase_l.LoadFile("11_18_2021");
     vase_l.ToString();
-    
     
 }
 

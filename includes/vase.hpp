@@ -26,7 +26,7 @@ public:
 
 
 private: 
-    int date_[3];
+    size_t date_[3];
     string day_;
     string mood_;
     string weather_;

@@ -41,10 +41,9 @@ std::cout << " + prev     >> check vase of the previous day" << std::endl;
 std::cout << " + add #    >> add entry (only allowed for today)" << std::endl;
 std::cout << " + undo     >> undo last entry (only allowed for today)" << std::endl;
 std::cout << " + log @    >> add text to log." << std::endl;
-std::cout << " + day @    >> change day" << std::endl;
 std::cout << " + mood @   >> change mood" << std::endl;
 std::cout << " + weat @   >> change weather" << std::endl;
-std::cout << " + cd @/@/@ >> check vase of the day" << std::endl;
+std::cout << " + cd @ @ @ >> check vase of the day" << std::endl;
 
     
     
@@ -317,7 +316,7 @@ void Vase::LoadFile(std::string filename) {
     int shiny_vec_size;
 
 
-    //get the vase
+    // get the vase
     if(saveFile.good()) {
         // Get the first line in the file
         std::getline(saveFile, line);
@@ -333,7 +332,7 @@ void Vase::LoadFile(std::string filename) {
     }
     std::getline(saveFile, line);
     shiny_vec_size = std::stoi(line);
-    //load vase
+    // load vase
     vase_.clear();
      while(std::getline(saveFile, line) && row != 20) {
         vector<string> current_row;
@@ -347,7 +346,7 @@ void Vase::LoadFile(std::string filename) {
         // std::cout << current_row << std::endl;
         row++;
     }
-    //get day, mood, weather
+    // get day, mood, weather
     // split strings by '[' to extract variables
     std::stringstream ss(line);
     std::string portion;
