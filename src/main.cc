@@ -50,9 +50,10 @@ int main() {
 
     vase.ToString();
     vase.SaveFile();
+
     Vase vase_l(0);
-    // vase_l.LoadFile("11_18_2021");
-    // vase_l.ToString();
+    vase_l.LoadFile("11_18_2021");
+    vase_l.ToString();
     
     
 }
