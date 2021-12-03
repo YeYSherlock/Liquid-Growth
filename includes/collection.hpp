@@ -5,7 +5,16 @@ enum mode {menu, daily, exhibition};
 
 class Collection {
 public:
+
+    Collection(mode set_mode): curr_mode_(set_mode) { vase_idx_ = 0; };
+
     /***** User Interface *****/
+
+    // Create a vase at this date
+    void AddAtDate(size_t month, size_t date, size_t year, size_t template_idx);
+
+    // add # of shiny (only allowed for today)
+    void Add(int num, string unicode, string log_text);
 
     // switch to vase of the next day
     void Next();
@@ -13,14 +22,14 @@ public:
     // switch to vase of the previous day
     void Prev();
 
-    // add # of shiny (only allowed for today)
-    void Add(int num);
-
     // undo last entry (only allowed for today)
     void Undo();
 
     // add text to log
-    void SetLog(string log_text);
+    void SetLastLog(string log_text);
+
+    // change day
+    void SetDay(string day_text);
 
     // change mood
     void SetMood(string mood_text);
@@ -28,7 +37,7 @@ public:
     // change weather
     void SetWeather(string weather_text);
 
-    // switch to vase of the specified date
+    // switch to the specified date
     void ChangeDate(size_t month, size_t date, size_t year);
 
     // change mode
@@ -36,12 +45,23 @@ public:
 
     /***** Hidden Support *****/
     
-    // sort vases
-    void SortVases()
+    // print the current vase
+    void ToString();
 
-private:
-    mode curr_mode;
-    vector<Vase> all_vases;
-    Vase curr_vase;
+    // sort vases (maybe not necessary)
+    void SortVases();
 
-};
+        // return count of all_vases_
+        size_t GetVaseCount() { return all_vases_.size(); };
+
+        // return vase_idx_
+        size_t GetVaseIdx() { return vase_idx_; };
+
+        // Delete? 
+
+    private:
+        mode curr_mode_;
+        vector<Vase*> all_vases_;
+        size_t vase_idx_;
+
+    };

@@ -35,18 +35,6 @@ Vase::Vase(size_t template_idx, size_t month, size_t date, size_t year, string d
 
 void Vase::ToString() {
 
-std::cout << "[Menu]" << std::endl;
-std::cout << " + next     >> check vase of the next day" << std::endl;
-std::cout << " + prev     >> check vase of the previous day" << std::endl;
-std::cout << " + add #    >> add entry (only allowed for today)" << std::endl;
-std::cout << " + undo     >> undo last entry (only allowed for today)" << std::endl;
-std::cout << " + log @    >> add text to log." << std::endl;
-std::cout << " + mood @   >> change mood" << std::endl;
-std::cout << " + weat @   >> change weather" << std::endl;
-std::cout << " + cd @ @ @ >> check vase of the day" << std::endl;
-
-    
-    
     // print vase and all shiny
     for (size_t i = 0; i < 20; i++) {
         for (size_t j = 0; j < 40; j++) {
@@ -73,6 +61,8 @@ std::cout << " + cd @ @ @ >> check vase of the day" << std::endl;
             std::cout << "| _" << shiny->num_shiny_ << " " << shiny->unicode_ << " << "  << shiny->log_ << std::endl;        }
     }
     std::cout << "+----------------------------------------+" << std::endl;
+
+    std::cout << "Type \"help\" to get a list of commands available" << std::endl;
 
 }
 void Vase::addShiny(size_t num_shiny, string unicode, string log) {
@@ -253,6 +243,48 @@ string Vase::shinyAt(size_t row_idx, size_t col_idx) {
     }
     return " ";
 }
+
+
+void Vase::DeleteLastShiny() {
+    if (shiny_vec.size() >= 1) {
+        // free memory
+        delete shiny_vec.at(shiny_vec.size() - 1);
+        // remove last element
+        shiny_vec.pop_back();
+    }
+}
+
+void Vase::SetLastLog(string log_text) {
+    if (shiny_vec.size() >= 1) {
+        // remove last element
+        shiny_vec.at(shiny_vec.size() - 1)->log_ = log_text;
+    }
+}
+
+void Vase::SetDay(string day_text) {
+    day_ = day_text;
+}
+
+void Vase::SetMood(string mood_text) {
+    mood_ = mood_text;
+}
+
+void Vase::SetWeather(string weather_text) {
+    weather_ = weather_text;
+}
+
+size_t Vase::GetMonth() {
+    return date_[0];
+}
+
+size_t Vase::GetDate() {
+    return date_[1];
+}
+
+size_t Vase::GetYear() {
+    return date_[2];
+}
+
 void Vase::SaveFile() {
     std::string filename = std::to_string(date_[0]) + "_" + std::to_string(date_[1]) + "_" + std::to_string(date_[2]);
     // Create an output filestream object

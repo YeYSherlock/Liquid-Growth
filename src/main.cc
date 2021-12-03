@@ -1,15 +1,125 @@
 #include "vase.hpp"
 #include "shiny.hpp"
+#include "collection.hpp"
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctime>
 
+#include <iostream>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <iterator>
+
+using std::stoi;
+
 #define print(s) std::cout << s << std::endl;
 
 
-
 int main() {
+    // initialize interface, implement menu/etc later
+    Collection collection(menu);
+
+
+    /*
+    build 12 06 2002 0
+    build 12 07 2002 0
+    build 12 05 2002 0
+    add 10 Ѿ Talked with family
+    add 30 Ǥ Finished TRA
+
+
+
+    */
+
+
+    while (true) {
+        // record user input
+        // vector<string> input_vec;
+        string input_string;
+        std::getline(std::cin, input_string);
+        std::istringstream buf(input_string);
+        std::istream_iterator<std::string> beg(buf), end;
+        std::vector<string> input(beg, end);
+
+        /* AddAtDate */
+        // build @ @ @ #
+        if (input.size() == 5 && input.at(0) == "build") {
+            // std::cout << "passed" << std::endl;
+            collection.AddAtDate(stoi(input.at(1)), stoi(input.at(2)), stoi(input.at(3)), stoi(input.at(4)));
+        }
+        /* Add */
+        // add num unicode logText
+        else if (input.size() >= 4 && input.at(0) == "add") {
+            
+            string log_text = "";
+            log_text += input.at(3);
+            for (size_t i = 4; i < input.size(); i++) {
+                log_text += " ";
+                log_text += input.at(i);
+            }
+            
+
+            collection.Add(stoi(input.at(1)), input.at(2), log_text);
+        }
+        /* Next */
+        else if (input.size() == 1 && input.at(0) == "next") {
+            // current one is the latest.
+            if (collection.GetVaseCount() <= collection.GetVaseIdx() + 1) {
+                std::cout << "Current vase is the latest. Use \"build\" to create a vase of the desired date." << std::endl; 
+                continue;
+            } 
+            // current one is not the latest. 
+            else { 
+                collection.Next();
+            }
+        }
+        /* Prev */
+        else if (input.size() == 1 && input.at(0) == "prev") {
+            // current one is the latest.
+            if (collection.GetVaseIdx() == 0) {
+                std::cout << "Current vase is the oldest. Use \"build\" to create a vase of the desired date." << std::endl; 
+                continue;
+            } 
+            // current one is not the latest. 
+            else { 
+                collection.Prev();
+            }
+        }
+        /* Show Commands Available */
+        else if (input.size() == 1 && input.at(0) == "help") {
+            std::cout << "[Commands Available]" << std::endl;
+            std::cout << " + build m d y >> add entry at specified day" << std::endl;
+            std::cout << " + cd m d y    >> check vase of the day" << std::endl;
+            std::cout << " + next        >> check vase of the next day" << std::endl;
+            std::cout << " + prev        >> check vase of the previous day" << std::endl;
+            std::cout << " + undo        >> undo last entry (only allowed for today)" << std::endl;
+            std::cout << " + log @       >> add text to log." << std::endl;
+            std::cout << " + mood @      >> change mood" << std::endl;
+            std::cout << " + weath @     >> change weather" << std::endl;
+            continue;
+        }
+        
+
+
+        // 
+
+
+        // collection.Add(10, "Ǥ", "HARRAAYYYYYYY!!!!");
+        // collection.Add(10, "Ǥ", "HARRAAYYYYYYY!!!!");
+        
+        
+        // lastly, always print it out. 
+        collection.ToString();
+    }
+
+
+
+
+
+
+
 
     // 1. load all data from saved files
     // 2. 
@@ -54,9 +164,9 @@ int main() {
     // vase.ToString();
     // vase.SaveFile();
 
-    Vase vase_l(0);
-    vase_l.LoadFile("11_18_2021");
-    vase_l.ToString();
+    // Vase vase_l(0);
+    // vase_l.LoadFile("11_18_2021");
+    // vase_l.ToString();
     
 }
 
@@ -65,11 +175,12 @@ int main() {
 
 
 [Menu]
++ touch @ @ @ # >> add a vase at that date
 + next     >> check vase of the next day
 + prev     >> check vase of the previous day
 + add #    >> add entry (only allowed for today)
 + undo     >> undo last entry (only allowed for today)
-+ log @    >> add text to log.
++ log @    >> add text to the last log.
 + day @    >> change day
 + mood @   >> change mood
 + weat @   >> change weather

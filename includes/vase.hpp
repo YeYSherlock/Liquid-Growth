@@ -19,6 +19,16 @@ public:
     Vase(size_t template_idx, size_t month, size_t date, size_t year, string day, string mood, string weather);
     void ToString();
     void addShiny(size_t num_shiny, string unicode, string log);
+
+    void DeleteLastShiny();
+    void SetLastLog(string log_text);
+    void SetDay(string day_text);
+    void SetMood(string mood_text);
+    void SetWeather(string weather_text);
+    size_t GetMonth();
+    size_t GetDate();
+    size_t GetYear();
+
     void SaveFile();
     void LoadFile(std::string filename);
     ~Vase();
@@ -31,8 +41,8 @@ private:
     string mood_;
     string weather_;
 
-    vector<vector<string>> vase_;
     vector<Shiny*> shiny_vec;
+    vector<vector<string>> vase_;
     
     size_t vase_opening_left;
     size_t vase_opening_right;
@@ -43,6 +53,7 @@ private:
     void addShinyAtPosition2(size_t drop_row, string unicode, size_t drop_idx, Shiny* new_shiny);
     int TowerHieght(size_t row,size_t col);
     void addShiny(size_t num_shiny, string unicode,string friction,Shiny* new_shiny);
+
 
     // template empty vases
     // 0

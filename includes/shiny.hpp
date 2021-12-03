@@ -14,6 +14,7 @@ class Shiny {
   string unicode_;
   string log_;
   vector<vector<string>> shiny_vec_;
+
 };
 
 #endif
