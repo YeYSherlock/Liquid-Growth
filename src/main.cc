@@ -127,13 +127,41 @@ int main() {
             collection.SetLastLog(log_text);
         } 
         /* mood */
-        else if (input.size() >= 2 && input.at(0) == "log") {
-
+        else if (input.size() >= 2 && input.at(0) == "mood") {
+            string mood_text = "";
+            mood_text += input.at(1);
+            for (size_t i = 2; i < input.size(); i++) {
+                mood_text += " ";
+                mood_text += input.at(i);
+            }
+            collection.SetMood(mood_text);
         }
         /* weath */
+        else if (input.size() >= 2 && input.at(0) == "weath") {
+            string weath_text = "";
+            weath_text += input.at(1);
+            for (size_t i = 2; i < input.size(); i++) {
+                weath_text += " ";
+                weath_text += input.at(i);
+            }
+            collection.SetWeather(weath_text);
+        }
+        /* day */
+        else if (input.size() >= 2 && input.at(0) == "day") {
+            string day_text = "";
+            day_text += input.at(1);
+            for (size_t i = 2; i < input.size(); i++) {
+                day_text += " ";
+                day_text += input.at(i);
+            }
+            collection.SetDay(day_text);
+        }
         /* undo */
+        else if (input.size() == 1 && input.at(0) == "undo") {
+            collection.Undo();
+        }
 
-
+        // invalid imput form user
         else {
             std::cout << "Didn't catch you there. Type \"help\" if you are lost :)" << std::endl;
             continue;
