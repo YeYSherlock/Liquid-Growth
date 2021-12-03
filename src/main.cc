@@ -105,8 +105,9 @@ int main() {
         else if (input.size() == 1 && input.at(0) == "help") {
             std::cout << std::endl << std::endl << std::endl;
             std::cout << "[Commands Available]" << std::endl;
-            std::cout << " + build m d y >> add entry at specified day" << std::endl;
+            std::cout << " + build m d y >> add entry at specified day (year 4 number)" << std::endl;
             std::cout << " + cd m d y    >> check vase of the day" << std::endl;
+            std::cout << " + add # U T   >> add num unicode log_text" << std::endl;
             std::cout << " + next        >> check vase of the next day" << std::endl;
             std::cout << " + prev        >> check vase of the previous day" << std::endl;
             std::cout << " + log @       >> add text to log." << std::endl;
@@ -116,9 +117,19 @@ int main() {
             continue;
         }
         /* log */
-        // else if (input.size() == 2 && )
-
+        else if (input.size() >= 2 && input.at(0) == "log") {
+            string log_text = "";
+            log_text += input.at(1);
+            for (size_t i = 2; i < input.size(); i++) {
+                log_text += " ";
+                log_text += input.at(i);
+            }
+            collection.SetLastLog(log_text);
+        } 
         /* mood */
+        else if (input.size() >= 2 && input.at(0) == "log") {
+
+        }
         /* weath */
         /* undo */
 
