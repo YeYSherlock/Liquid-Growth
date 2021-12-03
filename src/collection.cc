@@ -55,7 +55,7 @@ void Collection::ChangeDate(size_t month, size_t date, size_t year) {
             return;
         }
     }
-    throw std::runtime_error("Date Not Found, or Haven't initialized yet. Try to Create a Vase in that date");
+    throw std::runtime_error("Date Not Found, or Haven't initialized yet. Try to \"build\" a Vase in that date");
 }
 
 // switch to vase of the specified date

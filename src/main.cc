@@ -44,10 +44,24 @@ int main() {
         std::vector<string> input(beg, end);
 
         /* AddAtDate */
-        // build @ @ @ #
+        // build m d y which_vase
         if (input.size() == 5 && input.at(0) == "build") {
             // std::cout << "passed" << std::endl;
-            collection.AddAtDate(stoi(input.at(1)), stoi(input.at(2)), stoi(input.at(3)), stoi(input.at(4)));
+            try {
+                collection.AddAtDate(stoi(input.at(1)), stoi(input.at(2)), stoi(input.at(3)), stoi(input.at(4)));
+            } catch (const std::exception &exc) {
+                std::cerr << exc.what() << std::endl; 
+            }
+        }
+        /* ChangeDate */
+        // cd m d y
+        else if (input.size() == 4 && input.at(0) == "cd") {
+            try {
+                collection.ChangeDate(stoi(input.at(1)), stoi(input.at(2)), stoi(input.at(3)));
+            } catch (const std::runtime_error &exc) {
+                std::cerr << exc.what() << std::endl;
+                continue;
+            }
         }
         /* Add */
         // add num unicode logText
@@ -89,18 +103,30 @@ int main() {
         }
         /* Show Commands Available */
         else if (input.size() == 1 && input.at(0) == "help") {
+            std::cout << std::endl << std::endl << std::endl;
             std::cout << "[Commands Available]" << std::endl;
             std::cout << " + build m d y >> add entry at specified day" << std::endl;
             std::cout << " + cd m d y    >> check vase of the day" << std::endl;
             std::cout << " + next        >> check vase of the next day" << std::endl;
             std::cout << " + prev        >> check vase of the previous day" << std::endl;
-            std::cout << " + undo        >> undo last entry (only allowed for today)" << std::endl;
             std::cout << " + log @       >> add text to log." << std::endl;
             std::cout << " + mood @      >> change mood" << std::endl;
             std::cout << " + weath @     >> change weather" << std::endl;
+            std::cout << " + undo        >> undo last entry (only allowed for today)" << std::endl;
             continue;
         }
-        
+        /* log */
+        // else if (input.size() == 2 && )
+
+        /* mood */
+        /* weath */
+        /* undo */
+
+
+        else {
+            std::cout << "Didn't catch you there. Type \"help\" if you are lost :)" << std::endl;
+            continue;
+        }
 
 
         // 
