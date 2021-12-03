@@ -19,7 +19,19 @@ using std::stoi;
 
 int main() {
     // initialize interface, implement menu/etc later
-    Collection collection(menu);
+    Collection collection;
+    std::cout << "+----------------------------------------+" << std::endl;
+    std::cout << "| |                                    | |" << std::endl;
+    std::cout << "| |        |‾|         /‾_‾_‾|         | |" << std::endl;
+    std::cout << "| |        | |        | |              | |" << std::endl;
+    std::cout << "| |        | |        | | |_‾\\         | |" << std::endl;
+    std::cout << "| |        | |        | \\   | |        | |" << std::endl;
+    std::cout << "| |        |_‾_‾_‾|    \\_‾_‾_/         | |" << std::endl;
+    std::cout << "| |                                    | |" << std::endl;
+    std::cout << "| |        ╲╲╲╲╲╲╲╲ ᛥ ╱╱╱╱╱╱╱╱         | |" << std::endl;
+    std::cout << "| |                                    | |" << std::endl;
+    std::cout << "+----------------------------------------+" << std::endl;
+    std::cout << "     [type \"help\" to check commands]      " << std::endl;
 
 
     /*
@@ -28,9 +40,6 @@ int main() {
     build 12 05 2002 0
     add 10 Ѿ Talked with family
     add 30 Ǥ Finished TRA
-
-
-
     */
 
 
@@ -43,9 +52,25 @@ int main() {
         std::istream_iterator<std::string> beg(buf), end;
         std::vector<string> input(beg, end);
 
+
+        /* Show Commands Available */
+        if (input.size() == 1 && input.at(0) == "help") {
+            std::cout << std::endl << std::endl << std::endl;
+            std::cout << "[Commands Available]" << std::endl;
+            std::cout << " + build m d y V >> add entry at specified day, V = vase type" << std::endl;
+            std::cout << " + cd m d y      >> check vase of the day" << std::endl;
+            std::cout << " + add # U T     >> add num unicode log_text" << std::endl;
+            std::cout << " + next          >> check vase of the next day" << std::endl;
+            std::cout << " + prev          >> check vase of the previous day" << std::endl;
+            std::cout << " + log @         >> add text to log." << std::endl;
+            std::cout << " + mood @        >> change mood" << std::endl;
+            std::cout << " + weath @       >> change weather" << std::endl;
+            std::cout << " + undo          >> undo last entry (only allowed for today)" << std::endl;
+            continue;
+        }
         /* AddAtDate */
         // build m d y which_vase
-        if (input.size() == 5 && input.at(0) == "build") {
+        else if (input.size() == 5 && input.at(0) == "build") {
             // std::cout << "passed" << std::endl;
             try {
                 collection.AddAtDate(stoi(input.at(1)), stoi(input.at(2)), stoi(input.at(3)), stoi(input.at(4)));
@@ -100,21 +125,6 @@ int main() {
             else { 
                 collection.Prev();
             }
-        }
-        /* Show Commands Available */
-        else if (input.size() == 1 && input.at(0) == "help") {
-            std::cout << std::endl << std::endl << std::endl;
-            std::cout << "[Commands Available]" << std::endl;
-            std::cout << " + build m d y >> add entry at specified day (year 4 number)" << std::endl;
-            std::cout << " + cd m d y    >> check vase of the day" << std::endl;
-            std::cout << " + add # U T   >> add num unicode log_text" << std::endl;
-            std::cout << " + next        >> check vase of the next day" << std::endl;
-            std::cout << " + prev        >> check vase of the previous day" << std::endl;
-            std::cout << " + log @       >> add text to log." << std::endl;
-            std::cout << " + mood @      >> change mood" << std::endl;
-            std::cout << " + weath @     >> change weather" << std::endl;
-            std::cout << " + undo        >> undo last entry (only allowed for today)" << std::endl;
-            continue;
         }
         /* log */
         else if (input.size() >= 2 && input.at(0) == "log") {

@@ -1,12 +1,12 @@
 #pragma once
 #include "vase.hpp"
 
-enum mode {menu, daily, exhibition};
+// enum mode {main_menu, daily, exhibition};
 
 class Collection {
 public:
 
-    Collection(mode set_mode): curr_mode_(set_mode) { vase_idx_ = 0; };
+    // Collection(mode set_mode): curr_mode_(set_mode) { vase_idx_ = 0; };
 
     /***** User Interface *****/
 
@@ -41,7 +41,7 @@ public:
     void ChangeDate(size_t month, size_t date, size_t year);
 
     // change mode
-    void SetMode(mode setMode);
+    // void SetMode(mode setMode);
 
     /***** Hidden Support *****/
     
@@ -57,10 +57,15 @@ public:
         // return vase_idx_
         size_t GetVaseIdx() { return vase_idx_; };
 
+        // get curr_mode_
+        // mode GetCurrMode() { return curr_mode_; };
+        
         // Delete? 
 
+        
+
     private:
-        mode curr_mode_;
+        // mode curr_mode_;
         vector<Vase*> all_vases_;
         size_t vase_idx_;
 
