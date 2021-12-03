@@ -1,6 +1,0 @@
-          \   --   __ \ /       _                      -——  /
-           &  &&&  & & &&&&& &                       &&&    &TRA implemented add function
-              &&  & & &&&&& &                       &&       TRA implemented add function
-// vase itself
-// shiny 1 
-// shiny 2 
