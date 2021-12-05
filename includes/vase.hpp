@@ -43,7 +43,7 @@ private:
 
     vector<Shiny*> shiny_vec;
     vector<vector<string>> vase_;
-    
+
     size_t vase_opening_left;
     size_t vase_opening_right;
     int VaseOpeningWidth();
