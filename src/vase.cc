@@ -302,7 +302,31 @@ size_t Vase::GetYear() {
 }
 
 void Vase::SaveFile() {
-    std::string filename = "storage/" + std::to_string(date_[0]) + "_" + std::to_string(date_[1]) + "_" + std::to_string(date_[2]);
+
+    //std::to_string 
+
+    std::string filename = "storage/";
+    if (date_[0] >= 10) {
+        filename += std::to_string(date_[0]);
+    } else {
+        filename += "0";
+        filename += std::to_string(date_[0]);
+    }
+    filename += "_";
+    if (date_[1] >= 10) {
+        filename += std::to_string(date_[1]);
+    } else {
+        filename += "0";
+        filename += std::to_string(date_[1]);
+    }
+    filename += "_";
+    filename += std::to_string(date_[2]);
+
+
+    // filename += 
+    //  + std::to_string(date_[0]) + "_" + std::to_string(date_[1]) + "_" + std::to_string(date_[2]);
+
+
     //std::string filename = "test";
     // Create an output filestream object
     std::ofstream saveFile(filename);
@@ -332,7 +356,27 @@ void Vase::SaveFile() {
 
     // save all other attributes
     saveFile << "[" << day_ << "] " << "[Mood: " << mood_ << "] " << "[Weather: " << weather_ << "]" << std::endl;
-    saveFile << "+--------------[" << date_[0] << "/" << date_[1] << "/" << date_[2] << "]" << "--------------+" << std::endl;
+    
+    // Original: 
+    // saveFile << "+--------------[" << date_[0] << "/" << date_[1] << "/" << date_[2] << "]" << "--------------+" << std::endl;
+    
+    
+    saveFile << "+--------------[";
+    if (date_[0] >= 10) {
+        saveFile << date_[0] << "/";
+    } else {
+        saveFile << "0" << date_[0] << "/";
+    }
+    if (date_[1] >= 10) {
+        saveFile << date_[1] << "/";
+    } else {
+        saveFile << "0" << date_[1] << "/";
+    }
+    saveFile << date_[2] << "]" << "--------------+" << std::endl;
+
+    //
+
+
     for (Shiny* shiny : shiny_vec) {
         if (shiny->num_shiny_ >= 10) {
 

@@ -62,7 +62,7 @@ int main() {
     // loading all files into saved_files_vec
     string path = "storage";
     for (const auto & file : directory_iterator(path)) {
-
+        
         collection.AddAtDate(01, 01, 3000, 0);
         collection.CurrVase()->LoadFile(file.path());
 
