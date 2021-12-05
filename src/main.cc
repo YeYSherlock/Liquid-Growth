@@ -96,7 +96,7 @@ int main() {
             std::cout << "[Commands Available]" << std::endl;
             std::cout << " + build m d y V >> add entry at specified day, V = vase type" << std::endl;
             std::cout << " + cd m d y      >> check vase of the day" << std::endl;
-            std::cout << " + add # U T     >> add num unicode log_text" << std::endl;
+            std::cout << " + add n # T     >> add num unicode log_text" << std::endl;
             std::cout << " + next          >> check vase of the next day" << std::endl;
             std::cout << " + prev          >> check vase of the previous day" << std::endl;
             std::cout << " + log @         >> add text to log." << std::endl;
