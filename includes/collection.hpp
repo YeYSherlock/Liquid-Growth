@@ -41,7 +41,7 @@ public:
     void SetMood(string mood_text);
 
     // change weather
-    void SetWeather(string weather_text);
+    void SetWeather(string weather_text); 
 
     // switch to the specified date
     void ChangeDate(size_t month, size_t date, size_t year);

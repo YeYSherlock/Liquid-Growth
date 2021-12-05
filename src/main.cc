@@ -27,29 +27,6 @@ int main() {
 
     
     
-    
-    // ---------
-
-    // Vase vase(0, 12, 8, 2021, "Friday", "A bit down", "Windy");
-
-    // vase.addShiny(20, "X", "today is a good day");
-    // vase.ToString();
-    // vase.SaveFile();
-    
-    // return 0;
-
-    // ---------
-
-
-    // Vase vase(0);
-    // vase.LoadFile("12_6_2021");
-    // vase.addShiny(30, "Y", "Tomorrow is a good day");
-    // vase.ToString();
-
-    // return 0;
-
-
-
 
 
 
