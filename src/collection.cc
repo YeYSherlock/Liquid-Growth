@@ -1,5 +1,14 @@
 #include "collection.hpp"
 
+
+Vase* Collection::CurrVase() {
+    try {
+        return all_vases_[vase_idx_];
+    } catch (...) {
+        throw std::runtime_error("vase_idx_ out of bound");
+    }
+}
+
 // switch to vase of the next day
 void Collection::Next() {
     if (vase_idx_ <= all_vases_.size() - 2) {
@@ -82,7 +91,7 @@ void Collection::AddAtDate(size_t month, size_t date, size_t year, size_t templa
     else {
         for (size_t i = 0; i < all_vases_.size(); i++) {
             size_t i_num = all_vases_.at(i)->GetYear() * 10000 + all_vases_.at(i)->GetMonth() * 100 + all_vases_.at(i)->GetDate();
-            std::cout << "comparing: " << add_num << " and " << i_num << " at idx: " << vase_idx_ << std::endl;
+            // std::cout << "comparing: " << add_num << " and " << i_num << " at idx: " << vase_idx_ << std::endl;
             if (add_num < i_num) {  
                 all_vases_.insert(all_vases_.begin() + i, new_vase);
                 vase_idx_ = i;
@@ -107,8 +116,8 @@ void Collection::ToString() {
     all_vases_.at(vase_idx_)->ToString();
 }
 
-
-// change mode
-// void Collection::SetMode(mode setMode) {
-
-// }
+void Collection::SaveAllFiles() {
+    for (auto & vase : all_vases_) {
+        vase->SaveFile();
+    }
+}

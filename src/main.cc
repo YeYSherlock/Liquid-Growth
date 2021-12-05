@@ -11,8 +11,12 @@
 #include <string>
 #include <sstream>
 #include <iterator>
+#include <filesystem>
 
 using std::stoi;
+using std::cout; using std::cin;
+using std::endl; using std::string;
+using std::filesystem::directory_iterator;
 
 #define print(s) std::cout << s << std::endl;
 
@@ -20,8 +24,56 @@ using std::stoi;
 
 
 int main() {
+
+    
+    
+    
+    // ---------
+
+    // Vase vase(0, 12, 8, 2021, "Friday", "A bit down", "Windy");
+
+    // vase.addShiny(20, "X", "today is a good day");
+    // vase.ToString();
+    // vase.SaveFile();
+    
+    // return 0;
+
+    // ---------
+
+
+    // Vase vase(0);
+    // vase.LoadFile("12_6_2021");
+    // vase.addShiny(30, "Y", "Tomorrow is a good day");
+    // vase.ToString();
+
+    // return 0;
+
+
+
+
+
+
     // initialize interface, implement menu/etc later
     Collection collection;
+
+    // vec to save the to be loaded file names
+    vector<string> saved_files_vec;
+    
+    // loading all files into saved_files_vec
+    string path = "storage";
+    for (const auto & file : directory_iterator(path)) {
+
+        collection.AddAtDate(01, 01, 3000, 0);
+        collection.CurrVase()->LoadFile(file.path());
+
+        // saved_files_vec.push_back(file.path());
+    }
+
+    // for (auto & file_name : saved_files_vec) {
+
+    // }
+
+
     std::cout << "+----------------------------------------+" << std::endl;
     std::cout << "| |                                    | |" << std::endl;
     std::cout << "| |        |‾|         /‾_‾_‾|         | |" << std::endl;
@@ -30,9 +82,10 @@ int main() {
     std::cout << "| |        | |        | \\   | |        | |" << std::endl;
     std::cout << "| |        |_‾_‾_‾|    \\_‾_‾_/         | |" << std::endl;
     std::cout << "| |                                    | |" << std::endl;
-    std::cout << "| |        ╲╲╲╲╲╲╲╲ ᛥ ╱╱╱╱╱╱╱╱         | |" << std::endl;
+    std::cout << "| |    __╲╲Liquid╲╲\\ᛥ/╱╱Growth╱╱__     | |" << std::endl;
     std::cout << "| |                                    | |" << std::endl;
     std::cout << "+----------------------------------------+" << std::endl;
+    std::cout << "   [type \"start\" to begin the journey]    " << std::endl;
     std::cout << "     [type \"help\" to check commands]      " << std::endl;
 
 
@@ -54,9 +107,14 @@ int main() {
         std::istream_iterator<std::string> beg(buf), end;
         std::vector<string> input(beg, end);
 
-
+        if (input.size() == 1 && (input.at(0) == "start" || input.at(0) == "Start" || input.at(0) == "s")) {
+            collection.SetVaseIdx(0);
+            collection.ToString();
+            continue;
+        }
         /* Show Commands Available */
-        if (input.size() == 1 && (input.at(0) == "help" || input.at(0) == "h")) {
+        else if (input.size() == 1 && (input.at(0) == "help" || input.at(0) == "h")) {
+            std::cout << std::endl << std::endl << std::endl;
             std::cout << std::endl << std::endl << std::endl;
             std::cout << "[Commands Available]" << std::endl;
             std::cout << " + build m d y V >> add entry at specified day, V = vase type" << std::endl;
@@ -173,6 +231,12 @@ int main() {
             collection.Undo();
         }
 
+        /* quit */
+        // stop the entire program
+        else if (input.size() == 1 && (input.at(0) == "q" || input.at(0) == "quit")) {
+            return 0;
+        }
+
         // invalid imput form user
         else {
             std::cout << "Didn't catch you there. Type \"help\" if you are lost :)" << std::endl;
@@ -189,6 +253,7 @@ int main() {
         
         // lastly, always print it out. 
         collection.ToString();
+        collection.SaveAllFiles();
     }
 }
 

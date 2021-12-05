@@ -10,6 +10,12 @@ public:
 
     /***** User Interface *****/
 
+    // return the pointer of the current vase
+    Vase* CurrVase();
+
+    // Starting the program
+    
+
     // Create a vase at this date
     void AddAtDate(size_t month, size_t date, size_t year, size_t template_idx);
 
@@ -51,22 +57,28 @@ public:
     // sort vases (maybe not necessary)
     void SortVases();
 
-        // return count of all_vases_
-        size_t GetVaseCount() { return all_vases_.size(); };
+    // return count of all_vases_
+    size_t GetVaseCount() { return all_vases_.size(); };
 
-        // return vase_idx_
-        size_t GetVaseIdx() { return vase_idx_; };
+    // return vase_idx_
+    size_t GetVaseIdx() { return vase_idx_; };
+    
+    // set vase_idx_
+    void SetVaseIdx(size_t idx) { vase_idx_ = idx; };
 
-        // get curr_mode_
-        // mode GetCurrMode() { return curr_mode_; };
+    // save all files into storage
+    void SaveAllFiles();
+
+    // get curr_mode_
+    // mode GetCurrMode() { return curr_mode_; };
+    
+    // Delete? 
+
         
-        // Delete? 
 
-        
+private:
+    // mode curr_mode_;
+    vector<Vase*> all_vases_;
+    size_t vase_idx_;
 
-    private:
-        // mode curr_mode_;
-        vector<Vase*> all_vases_;
-        size_t vase_idx_;
-
-    };
+};
