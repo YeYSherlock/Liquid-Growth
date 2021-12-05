@@ -40,7 +40,9 @@ void Vase::ToString() {
         for (size_t j = 0; j < 40; j++) {
             if (shinyAt(i, j) != " ") {
                 std::cout << shinyAt(i, j);
+                //std::cout << vase_.at(i).at(j);
             } else {
+                //std::cout << shinyAt(i, j);
                 std::cout << vase_.at(i).at(j);
             }
 
@@ -287,6 +289,7 @@ size_t Vase::GetYear() {
 
 void Vase::SaveFile() {
     std::string filename = std::to_string(date_[0]) + "_" + std::to_string(date_[1]) + "_" + std::to_string(date_[2]);
+    //std::string filename = "test";
     // Create an output filestream object
     std::ofstream saveFile(filename);
     //Save type of vase
@@ -327,7 +330,10 @@ void Vase::SaveFile() {
     for (Shiny* shiny : shiny_vec) {
         for (size_t i = 0; i < 20; i++) {
             for (size_t j = 0; j < 40; j++) {
-                saveFile << shiny->shiny_vec_.at(i).at(j);
+                if(shiny->shiny_vec_.at(i).at(j) != " ") {
+                    saveFile << shiny->unicode_;
+                    saveFile << " " << i << " " << j << " ";
+                }
             }
             saveFile << std::endl;
         }
@@ -365,17 +371,24 @@ void Vase::LoadFile(std::string filename) {
     std::getline(saveFile, line);
     shiny_vec_size = std::stoi(line);
     // load vase
-    vase_.clear();
+    //vase_.clear();
      while(std::getline(saveFile, line) && row != 20) {
-        vector<string> current_row;
-        for(size_t col = 0; col < 40; col++) {
-            string c;
-            c.push_back(line[col]);
-            current_row.push_back(c);
-            //std::cout << c <<std::endl;
-        }
-        vase_.push_back(current_row);
-        // std::cout << current_row << std::endl;
+        // vector<string> current_row;
+        // // size_t col = 0;
+        // //std::cout << line << std::endl;
+        // for(size_t col = 0; col < 40; col++) {
+        //     //std::cout << line.substr(col, 1);
+        //     string c;
+        //     c = line.substr(col, 1);
+        //     current_row.push_back(c);
+        //     //std::cout << c <<std::endl;
+        // }
+        // //std::cout << std::endl;
+        // vase_.push_back(current_row);
+        // for(size_t i = 0; i < vase_[row].size(); i++) {
+        //     //std::cout << vase_[row][i];
+        // }
+        // //std::cout << std::endl;
         row++;
     }
     // get day, mood, weather
@@ -406,8 +419,9 @@ void Vase::LoadFile(std::string filename) {
     //stops when it reaches shiny_vec_size
     int row2 = 0;
     while(std::getline(saveFile, line) && row2 < shiny_vec_size) {
+        std::cout << line << std::endl;
         row2++;
-        std::cout << shiny_vec_size << std::endl;
+        // std::cout << shiny_vec_size << std::endl;
         std::stringstream shinyss(line);
         std::string shinyinfo;
         std::vector<std::string> shiny;
@@ -422,7 +436,7 @@ void Vase::LoadFile(std::string filename) {
                 break;
             }
             else {
-                std::cout << shiny[1] << std::endl;
+                // std::cout << shiny[1] << std::endl;
                 num_shiny = std::stoi(shiny[1]);
             }
         }
@@ -433,20 +447,35 @@ void Vase::LoadFile(std::string filename) {
         }
         Shiny* new_shiny = new Shiny(num_shiny, unicode, log);
         shiny_vec.push_back(new_shiny);
+        if(row2 == shiny_vec_size) {
+            break;
+        }
     }
+    //std::cout << line << std::endl;
     //load shiny_vec_ of each shiny by looping shiny_vec_size times and copying the value at each row and col 
     for(int i = 0; i < shiny_vec_size; i++){
         int row3 = 0;
+        //shiny_vec[i]->shiny_vec_.clear();
         while(std::getline(saveFile, line) && row3 < 20) {
-            vector<string> current_row;
-            for(size_t col = 0; col < 40; col++) {
-                string c;
-                c.push_back(line[col]);
-                shiny_vec[i]->shiny_vec_[row3][col] = c;
-                //std::cout << row << col << c <<std::endl;
+            //std::cout << (line.substr(0, 1) == "") << std::endl;
+            if(line.substr(0, 1) != "") {
+                //std::cout << row3 << std::endl;
+                std::stringstream shinyvecss(line);
+                std::string shinypos;
+                std::vector<std::string> shinys;
+                while(std::getline(shinyvecss, shinypos, ' ')) {
+                    shinys.push_back(shinypos);
+                }
+                for(size_t numshiny = 0; numshiny < shinys.size() / 3; numshiny++) {
+                    shiny_vec[i]->shiny_vec_[std::stoi(shinys[3*numshiny + 1])][std::stoi(shinys[3*numshiny + 2])] = shinys[0];
+                    //std::cout << std::stoi(shinys[3*numshiny + 1]) << " " << std::stoi(shinys[3*numshiny + 2]) << " " << shinys[0] << std::endl;
+                }
             }
-            // std::cout << current_row << std::endl;
             row3++;
+            if(row3 == 20) {
+                break;
+            }
+            //std::cout << std::endl;
         }
     }
 
