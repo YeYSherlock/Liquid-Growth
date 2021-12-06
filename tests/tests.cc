@@ -38,7 +38,31 @@ TEST_CASE( "Build Vase" ) {
         }
       REQUIRE( check == true);
    }
-  // clang-format off
+}
+
+TEST_CASE("Add shiny"){
+    Vase* vase = new Vase(0, 12, 25, 2002, "Monday", "Happy", "Rain");
+    vase->addShiny(25,"$","Happy Birthday!");
+    SECTION("Check shiny object"){
+        bool check = false;
+        if(vase->GetShinyvector()[0]->unicode_ == "$" && vase->GetShinyvector()[0]->num_shiny_ == 25 && vase->GetShinyvector()[0]->log_ == "Happy Birthday!"){
+            check = true;
+        }
+        REQUIRE( check == true);
+    }
+
+    SECTION("Count Shiny"){
+        int count = 0;
+        vector<vector<string>> temp_vec = vase->GetShinyvector()[0]->shiny_vec_;
+        for(size_t i = 0; i < temp_vec.size(); i++){
+            for(size_t j = 0; j < temp_vec[i].size(); j++){
+                if(temp_vec[i][j] != " "){
+                    count ++;
+                }
+            }
+        }
+        REQUIRE(count == 25);
+    }
 }
 
 

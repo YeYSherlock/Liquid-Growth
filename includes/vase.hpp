@@ -25,6 +25,7 @@ public:
     void SetDay(string day_text);
     void SetMood(string mood_text);
     void SetWeather(string weather_text);
+
     size_t GetMonth();
     size_t GetDate();
     size_t GetYear();
@@ -34,6 +35,7 @@ public:
     vector<vector<string>> GetVase();
     vector<vector<string>> Getstamnos();
     vector<vector<string>> Getkalathos();
+    vector<Shiny*> GetShinyvector();
 
     void SaveFile();
     void LoadFile(std::string filename);
