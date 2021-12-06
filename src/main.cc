@@ -81,17 +81,17 @@ int main() {
             std::cout << std::endl << std::endl << std::endl;
             std::cout << "[Commands Available]" << std::endl;
             std::cout << " + build m d y V >> add entry at specified day, V = vase type" << std::endl;
-            std::cout << " + Ex: build 09 20 2002 1" <<std::endl;
+            std::cout << " +                    Ex: build 12 31 2021 0" <<std::endl;
             std::cout << " + cd m d y      >> check vase of the day" << std::endl;
-            std::cout << " + Ex: cd 09 20 2002" <<std::endl;
+            std::cout << " +                    Ex: cd 12 31 2002" <<std::endl;
             std::cout << " + add n # T     >> add num unicode log_text" << std::endl;
-            std::cout << " + Ex: add 10 $ complete TRA" <<std::endl;
+            std::cout << " +                    Ex: add 10 $ Completed HW!" <<std::endl;
             std::cout << " + next          >> check vase of the next day" << std::endl;
             std::cout << " + prev          >> check vase of the previous day" << std::endl;
             std::cout << " + log @         >> add text to log." << std::endl;
             std::cout << " + mood @        >> change mood" << std::endl;
             std::cout << " + weath @       >> change weather" << std::endl;
-            std::cout << " + undo          >> undo last entry (only allowed for today)" << std::endl;
+            std::cout << " + undo          >> undo last entry" << std::endl;
             continue;
         }
         /* AddAtDate */
