@@ -92,7 +92,7 @@ void Vase::addShiny(size_t num_shiny, string unicode, string log) {
 void Vase::addShiny(size_t num_shiny, string unicode,string friction,Shiny* new_shiny){
     if(friction == "Low Friction"){
         for(size_t i = 0; i < num_shiny; i++){
-            addShinyAtPosition2( 0, unicode, (vase_opening_left + rand()%(vase_opening_right - vase_opening_left - 1) + 1), new_shiny);
+            addShinyAtPosition( 0, unicode, (vase_opening_left + rand()%(vase_opening_right - vase_opening_left - 1) + 1), new_shiny);
         }
     }else{
         size_t drop_idx = 0;
@@ -101,73 +101,12 @@ void Vase::addShiny(size_t num_shiny, string unicode,string friction,Shiny* new_
         }
         drop_idx = drop_idx / 5;
         for(size_t i = 0; i < num_shiny; i++){
-            addShinyAtPosition2( 0, unicode, drop_idx, new_shiny);
+            addShinyAtPosition( 0, unicode, drop_idx, new_shiny);
         }
     }
 }
 
-void Vase::addShinyAtPosition(size_t num_shiny, size_t drop_row, string unicode, size_t drop_idx, Shiny* new_shiny) {
-    // ensuring it stays within vertical bound (0 ~ 39)
-    if (drop_idx >= 39) {
-        drop_idx = 39;
-    } else if (drop_idx <= 0) {
-        drop_idx = 0;
-    }
-
-    // ensuring it stays within horizontal bound (0 ~ 19)
-    if (drop_row <= 0) {
-        drop_row = 1;
-    } else if (drop_row >= 19) {
-        drop_row = 19;
-    }    
-
-    // base case
-    if (num_shiny == 0) {
-        return;
-    }
-    
-    for (size_t row = drop_row; row < 20; row++) {
-        if (IsSpace(row, drop_idx)) {
-            // continue falling 
-        } else {
-            // generate random num
-            int position_num;
-            // left right both empty
-            if (IsSpace(row, drop_idx - 1) && IsSpace(row, drop_idx + 1)) {
-                position_num = (rand()%(3));// 0, 1, 2
-                position_num--; // -1, 0, 1
-            } 
-            // left empty
-            else if (IsSpace(row, drop_idx - 1)) {
-                position_num = (rand()%(2));// 0, 1
-                position_num--; // -1, 0
-            }
-            // right empty
-            else if (IsSpace(row, drop_idx + 1)) {
-                position_num = (rand()%(2));// 0, 1
-            }
-            // both full
-            else {
-                position_num = 0;
-            }
-
-            if (position_num == -1) {
-                addShinyAtPosition(num_shiny, row - 1, unicode, drop_idx - 1, new_shiny);
-            } else if (position_num == 1) {
-                addShinyAtPosition(num_shiny, row - 1, unicode, drop_idx + 1, new_shiny);
-
-            } else {
-                
-                // std::cout << drop_idx ;
-                new_shiny->shiny_vec_.at(row - 1).at(drop_idx) = unicode;
-                addShinyAtPosition(num_shiny - 1, 0, unicode, drop_idx, new_shiny);
-            }
-            return;
-        }
-    }
-}
-
-void Vase::addShinyAtPosition2(size_t drop_row, string unicode, size_t drop_idx, Shiny* new_shiny) {
+void Vase::addShinyAtPosition(size_t drop_row, string unicode, size_t drop_idx, Shiny* new_shiny) {
     // ensuring it stays within vertical bound (0 ~ 39)
     if (drop_idx >= 39) {
         drop_idx = 39;
@@ -184,7 +123,7 @@ void Vase::addShinyAtPosition2(size_t drop_row, string unicode, size_t drop_idx,
     
     if (IsSpace(drop_row + 1, drop_idx)) {
         //Continue Falling
-        addShinyAtPosition2(drop_row + 1, unicode, drop_idx, new_shiny);
+        addShinyAtPosition(drop_row + 1, unicode, drop_idx, new_shiny);
     }else{
         //Reach Ground
         int left_height;
@@ -208,14 +147,14 @@ void Vase::addShinyAtPosition2(size_t drop_row, string unicode, size_t drop_idx,
 
         if(left_height > 2 ){
             // Tower collapse to left 
-            addShinyAtPosition2(drop_row  + 1, unicode, drop_idx - 1, new_shiny);
+            addShinyAtPosition(drop_row  + 1, unicode, drop_idx - 1, new_shiny);
         }else if(right_height > 2){
             // Tower collapse to right
-            addShinyAtPosition2(drop_row  + 1, unicode, drop_idx + 1, new_shiny);
+            addShinyAtPosition(drop_row  + 1, unicode, drop_idx + 1, new_shiny);
         }else if(left_height > 1 && rand() % 2 == 0 ){
-            addShinyAtPosition2(drop_row  + 1, unicode, drop_idx - 1, new_shiny);
+            addShinyAtPosition(drop_row  + 1, unicode, drop_idx - 1, new_shiny);
         }else if(right_height > 1 && rand() % 2 == 0 ){
-            addShinyAtPosition2(drop_row  + 1, unicode, drop_idx + 1, new_shiny);
+            addShinyAtPosition(drop_row  + 1, unicode, drop_idx + 1, new_shiny);
         }else{
             //Shiny Settled
             new_shiny->shiny_vec_.at(drop_row).at(drop_idx) = unicode;

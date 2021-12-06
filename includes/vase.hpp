@@ -57,8 +57,7 @@ private:
     int VaseOpeningWidth();
     bool IsSpace(size_t row_idx, size_t col_idx);
     string shinyAt(size_t row_idx, size_t col_idx);
-    void addShinyAtPosition(size_t num_shiny, size_t drop_row, string unicode, size_t drop_idx, Shiny* new_shiny);
-    void addShinyAtPosition2(size_t drop_row, string unicode, size_t drop_idx, Shiny* new_shiny);
+    void addShinyAtPosition(size_t drop_row, string unicode, size_t drop_idx, Shiny* new_shiny);
     int TowerHieght(size_t row,size_t col);
     void addShiny(size_t num_shiny, string unicode,string friction,Shiny* new_shiny);
 
