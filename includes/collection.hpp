@@ -6,15 +6,10 @@
 class Collection {
 public:
 
-    // Collection(mode set_mode): curr_mode_(set_mode) { vase_idx_ = 0; };
-
     /***** User Interface *****/
 
     // return the pointer of the current vase
     Vase* CurrVase();
-
-    // Starting the program
-    
 
     // Create a vase at this date
     void AddAtDate(size_t month, size_t date, size_t year, size_t template_idx);

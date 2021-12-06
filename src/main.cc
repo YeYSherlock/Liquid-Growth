@@ -43,12 +43,7 @@ int main() {
         collection.AddAtDate(01, 01, 3000, 0);
         collection.CurrVase()->LoadFile(file.path());
 
-        // saved_files_vec.push_back(file.path());
     }
-
-    // for (auto & file_name : saved_files_vec) {
-
-    // }
 
 
     std::cout << "+----------------------------------------+" << std::endl;
@@ -66,18 +61,9 @@ int main() {
     std::cout << "     [type \"help\" to check commands]      " << std::endl;
 
 
-    /*
-    build 12 06 2002 0
-    build 12 07 2002 0
-    build 12 05 2002 0
-    add 10 Ѿ Talked with family
-    add 30 Ǥ Finished TRA
-    */
-
-
     while (true) {
         // record user input
-        // vector<string> input_vec;
+        // vector<string> input;
         string input_string;
         std::getline(std::cin, input_string);
         std::istringstream buf(input_string);
@@ -219,17 +205,11 @@ int main() {
             std::cout << "Didn't catch you there. Type \"help\" if you are lost :)" << std::endl;
             continue;
         }
-
-
-        // 
-
-
-        // collection.Add(10, "Ǥ", "HARRAAYYYYYYY!!!!");
-        // collection.Add(10, "Ǥ", "HARRAAYYYYYYY!!!!");
-        
         
         // lastly, always print it out. 
         collection.ToString();
+
+        // save files
         collection.SaveAllFiles();
     }
 }
