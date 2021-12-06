@@ -28,6 +28,12 @@ public:
     size_t GetMonth();
     size_t GetDate();
     size_t GetYear();
+    string GetMood();
+    string GetWeather();
+    string GetDay();
+    vector<vector<string>> GetVase();
+    vector<vector<string>> Getstamnos();
+    vector<vector<string>> Getkalathos();
 
     void SaveFile();
     void LoadFile(std::string filename);
@@ -62,11 +68,6 @@ private:
     static const size_t stamnos_opening_right_idx = 27;
 
     // 1
-    static const vector<vector<string>> amphora;
-    static const size_t amphora_opening_left_idx = 14;
-    static const size_t amphora_opening_right_idx = 27;
-
-    // 2
     static const vector<vector<string>> kalathos;
     static const size_t kalathos_opening_left_idx = 12;
     static const size_t kalathos_opening_right_idx = 28;

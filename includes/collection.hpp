@@ -58,6 +58,9 @@ public:
     // return vase_idx_
     size_t GetVaseIdx() { return vase_idx_; };
     
+    // return vase_at vase_idx_
+    Vase* GetVase() { return all_vases_[vase_idx_]; }
+
     // set vase_idx_
     void SetVaseIdx(size_t idx) { vase_idx_ = idx; };
 

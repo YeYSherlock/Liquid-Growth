@@ -520,6 +520,30 @@ Vase::~Vase() {
     }
 }
  
+vector<vector<string>> Vase::GetVase(){
+    return vase_;
+}
+
+vector<vector<string>> Vase::Getstamnos(){
+    return stamnos;
+}
+
+vector<vector<string>> Vase::Getkalathos(){
+    return kalathos;
+}
+
+string Vase::GetMood(){
+    return mood_;
+}
+
+string Vase::GetWeather(){
+    return weather_;
+}
+
+string Vase::GetDay(){
+    return day_;
+}
+
 const vector<vector<string>> Vase::stamnos = 
        {{" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
         {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
