@@ -91,30 +91,30 @@ Type "help" to get a list of commands available
 **To add a vase at a specified day**, type <br>
 ```build [month] [date] [year] [vase_type]``` <br>
 We currently support two vase types, coded 0 and 1. <br>
-For example, ```build 12 5 2021 0``` or ```build 9 7 2022 1``` <br>
+For example, ```build 12 5 2021 0``` or ```build 9 7 2022 1``` <br><br>
 
 **To switch to a date where a vase has already been created**, type <br>
-```cd [month] [day] [year]``` <br>
+```cd [month] [date] [year]``` <br><br>
 
 **To add an entry (unicodes) to the vase currently showing on screen**: type <br>
 ```add [num_of_unicodes] [unicode] [log_text]``` <br>
-For example, ```add 3 Ӂ Finished TRA! ``` <br>
+For example, ```add 3 Ӂ Finished TRA! ``` <br><br>
 
 **To check the next vase available**, type <br>
-```next```
+```next``` <br>
 
 **To check the previous vase available**, type <br>
-```prev```
+```prev``` <br>
 
 **To change the log of the current vase**, type <br>
-```log [log_text]```
+```log [log_text]``` <br>
 
 **To change the mood of the current vase**, type <br>
-```mood [mood_text]```
+```mood [mood_text]``` <br>
 
 **To change the weather of the current vase**, type <br>
-```weath [weather_text]```
+```weath [weather_text]``` <br>
 
 **To undo last entry**, type <br>
-```undo```
+```undo``` <br>
 
