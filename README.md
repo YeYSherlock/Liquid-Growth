@@ -78,6 +78,7 @@ Type "help" to get a list of commands available
  + mood @        >> change mood
  + weath @       >> change weather
  + undo          >> undo last entry
+ + quit          >> quit the program
  </pre>
 
 ## Detailed Documentation of the Commands Available
@@ -117,4 +118,8 @@ For example, ```add 3 Ӂ Finished TRA! ``` <br><br>
 
 **To undo last entry**, type <br>
 ```undo``` <br><br>
+
+**To quit the program**, type <br>
+```quit``` <br><br>
+
 

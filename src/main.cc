@@ -92,6 +92,7 @@ int main() {
             std::cout << " + mood @        >> change mood" << std::endl;
             std::cout << " + weath @       >> change weather" << std::endl;
             std::cout << " + undo          >> undo last entry" << std::endl;
+            std::cout << " + quit          >> exit the program" << std::endl;
             continue;
         }
         /* AddAtDate */
