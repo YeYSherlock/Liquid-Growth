@@ -455,7 +455,7 @@ void Vase::LoadFile(std::string filename) {
     //stops when it reaches shiny_vec_size
     int row2 = 0;
     while(std::getline(saveFile, line) && row2 < shiny_vec_size) {
-        std::cout << line << std::endl;
+        // std::cout << line << std::endl;
         row2++;
         // std::cout << shiny_vec_size << std::endl;
         std::stringstream shinyss(line);
