@@ -40,7 +40,7 @@ TEST_CASE( "Build Vase" ) {
    }
 }
 
-TEST_CASE("Add shiny"){
+TEST_CASE("Add shiny") {
     Vase* vase = new Vase(0, 12, 25, 2002, "Monday", "Happy", "Rain");
     vase->addShiny(25,"$","Happy Birthday!");
     SECTION("Check shiny object"){
@@ -65,5 +65,6 @@ TEST_CASE("Add shiny"){
     }
 }
 
+TEST_CASE("SHINY") {
 
-
+}
