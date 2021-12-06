@@ -436,7 +436,7 @@ void Vase::LoadFile(std::string filename) {
         portionlist.push_back(portion);
     }
     day_ = portionlist[1].substr(0, portionlist[1].size() - 2);
-    mood_ = portionlist[2].substr(6, portionlist[1].size() - 3);
+    mood_ = portionlist[2].substr(6, portionlist[2].size() - 8);
     weather_ = portionlist[3].substr(9, portionlist[3].size() - 10);
     //date by splitting strings by '/'
     std::getline(saveFile, line);
