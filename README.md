@@ -20,7 +20,7 @@ Milestone 3: fully done (finalize each detail, add documentation)
 ------------
 
 ### 
-
+<pre>
 +----------------------------------------+ <br>
 |                                        | <br>
 |                                        | <br>
@@ -65,3 +65,4 @@ Type "help" to get a list of commands available
  + mood @        >> change mood
  + weath @       >> change weather
  + undo          >> undo last entry
+ </pre>
