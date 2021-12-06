@@ -81,37 +81,40 @@ Type "help" to get a list of commands available
  </pre>
 
 ## Detailed Documentation of the Commands Available
-To start the program, type <br>
+**To start the program**, type <br>
 ```make```
 <br><br>
 
-To add a vase at a specified day, type <br>
+**To get a help deck of all the commands available**, type <br>
+```help``` or ```h```
+
+**To add a vase at a specified day**, type <br>
 ```build [month] [date] [year] [vase_type]``` <br>
 We currently support two vase types, coded 0 and 1. <br>
 For example, ```build 12 5 2021 0``` or ```build 9 7 2022 1``` <br>
 
-To switch to a date where a vase has already been created, type <br>
+**To switch to a date where a vase has already been created**, type <br>
 ```cd [month] [day] [year]``` <br>
 
-To add an entry (unicodes) to the vase currently showing on screen: type <br>
+**To add an entry (unicodes) to the vase currently showing on screen**: type <br>
 ```add [num_of_unicodes] [unicode] [log_text]``` <br>
 For example, ```add 3 Ӂ Finished TRA! ``` <br>
 
-To check the next vase available, type <br>
+**To check the next vase available**, type <br>
 ```next```
 
-To check the previous vase available, type <br>
+**To check the previous vase available**, type <br>
 ```prev```
 
-To change the log of the current vase, type <br>
+**To change the log of the current vase**, type <br>
 ```log [log_text]```
 
-To change the mood of the current vase, type <br>
+**To change the mood of the current vase**, type <br>
 ```mood [mood_text]```
 
-To change the weather of the current vase, type <br>
+**To change the weather of the current vase**, type <br>
 ```weath [weather_text]```
 
-To undo last entry, type <br>
+**To undo last entry**, type <br>
 ```undo```
 
