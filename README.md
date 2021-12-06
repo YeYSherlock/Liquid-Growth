@@ -30,7 +30,7 @@ Finally we debugged all of them and finished README.md and the test suite.
 
 ### Test cases
 To use our test suite, type in the terminal: <br>
-```make test```
+```make tests```
 
 ## Showcase
 <pre>
