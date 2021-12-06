@@ -86,7 +86,7 @@ Type "help" to get a list of commands available
 <br><br>
 
 **To get a help deck of all the commands available**, type <br>
-```help``` or ```h```
+```help``` or ```h```<br><br>
 
 **To add a vase at a specified day**, type <br>
 ```build [month] [date] [year] [vase_type]``` <br>
@@ -101,20 +101,20 @@ For example, ```build 12 5 2021 0``` or ```build 9 7 2022 1``` <br><br>
 For example, ```add 3 Ӂ Finished TRA! ``` <br><br>
 
 **To check the next vase available**, type <br>
-```next``` <br>
+```next``` <br><br>
 
 **To check the previous vase available**, type <br>
-```prev``` <br>
+```prev``` <br><br>
 
 **To change the log of the current vase**, type <br>
-```log [log_text]``` <br>
+```log [log_text]``` <br><br>
 
 **To change the mood of the current vase**, type <br>
-```mood [mood_text]``` <br>
+```mood [mood_text]``` <br><br>
 
 **To change the weather of the current vase**, type <br>
-```weath [weather_text]``` <br>
+```weath [weather_text]``` <br><br>
 
 **To undo last entry**, type <br>
-```undo``` <br>
+```undo``` <br><br>
 
