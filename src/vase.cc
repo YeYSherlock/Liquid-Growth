@@ -3,18 +3,14 @@
 #include <fstream>
 #include <sstream> 
 
-
+//constructor for vase
 Vase::Vase(size_t template_idx) {
     // initialize
     if (template_idx == 0) {
         vase_ = stamnos;
         vase_opening_left = stamnos_opening_left_idx;
         vase_opening_right = stamnos_opening_right_idx;
-    } else if (template_idx == 1) {
-        vase_ = amphora;
-        vase_opening_left = amphora_opening_left_idx;
-        vase_opening_right = amphora_opening_right_idx;
-    } else if (template_idx == 2) {
+    }else if (template_idx == 1) {
         vase_ = kalathos;
         vase_opening_left = kalathos_opening_left_idx;
         vase_opening_right = kalathos_opening_right_idx;
@@ -23,6 +19,7 @@ Vase::Vase(size_t template_idx) {
     }
 }
 
+//Constructor for vase
 Vase::Vase(size_t template_idx, size_t month, size_t date, size_t year, string day, string mood, string weather): Vase(template_idx) {
     date_[0] = month;
     date_[1] = date;
@@ -40,14 +37,9 @@ void Vase::ToString() {
         for (size_t j = 0; j < 40; j++) {
             if (shinyAt(i, j) != " ") {
                 std::cout << shinyAt(i, j);
-                //std::cout << vase_.at(i).at(j);
             } else {
-                //std::cout << shinyAt(i, j);
                 std::cout << vase_.at(i).at(j);
             }
-
-            // std::cout << vase.vase_.at(i).at(j);
-            // std::cout << vase.stamnos.at(i).at(j);
         }
         std::cout << "|";
         std::cout << std::endl;
@@ -81,6 +73,8 @@ void Vase::ToString() {
     std::cout << "Type \"help\" to get a list of commands available" << std::endl;
 
 }
+
+//there is a 50%/50% chance whether the shiny will slip to the bottom, or in another word, whether the shiny has high or low friction
 void Vase::addShiny(size_t num_shiny, string unicode, string log) {
     // make random value between vase_opening_right and vase_opening_left
     srand((unsigned) time(0));
@@ -88,9 +82,11 @@ void Vase::addShiny(size_t num_shiny, string unicode, string log) {
 
     Shiny* new_shiny = new Shiny(num_shiny, unicode, log);
     shiny_vec.push_back(new_shiny);
-     //addShiny(num_shiny,unicode,"Low Friction",new_shiny);
-   addShiny(num_shiny,unicode,"High Friction", new_shiny);
-    
+    if(rand() % 2 == 1){
+        addShiny(num_shiny,unicode,"Low Friction",new_shiny);    
+    }else{
+        addShiny(num_shiny,unicode, "High Friction", new_shiny);
+    }
 }
 
 void Vase::addShiny(size_t num_shiny, string unicode,string friction,Shiny* new_shiny){
@@ -227,6 +223,7 @@ void Vase::addShinyAtPosition2(size_t drop_row, string unicode, size_t drop_idx,
     }
 }
 
+//Height of the tower that is piled up 
 int Vase::TowerHieght(size_t row,size_t col){
     if(!IsSpace(row,col)){
         return 0;
@@ -235,6 +232,7 @@ int Vase::TowerHieght(size_t row,size_t col){
     }
 }
 
+//check whether the character in this index is space 
 bool Vase::IsSpace(size_t row_idx, size_t col_idx) {
     // iterating through vase template itself
     if (vase_.at(row_idx).at(col_idx) != " ") {
@@ -250,6 +248,7 @@ bool Vase::IsSpace(size_t row_idx, size_t col_idx) {
 }
 
 
+//return the shiny at this index
 string Vase::shinyAt(size_t row_idx, size_t col_idx) {
     for (Shiny* shiny : shiny_vec) {
         if (shiny->shiny_vec_.at(row_idx).at(col_idx) != " ") {
@@ -301,6 +300,7 @@ size_t Vase::GetYear() {
     return date_[2];
 }
 
+//Save the vase 
 void Vase::SaveFile() {
 
     //std::to_string 
@@ -333,12 +333,8 @@ void Vase::SaveFile() {
     //Save type of vase
     if(!stamnos.empty()) {
         saveFile << "stamnos" << std::endl;
-    }
-    else if(!amphora.empty()) {
-        saveFile << "amphora" << std::endl;
-    }
-    else if (!kalathos.empty()) {
-        saveFile << "amphora" << std::endl;
+    }else if (!kalathos.empty()) {
+        saveFile << "kalathos" << std::endl;
     }
     //save shiny_vec_ size
     saveFile << shiny_vec.size() << std::endl;
@@ -420,11 +416,7 @@ void Vase::LoadFile(std::string filename) {
         std::getline(saveFile, line);
         if(line == "stamnos") {
             vase_ = stamnos;
-        }
-        else if(line == "amphora") {
-            vase_ = amphora;
-        }
-        else if (line == "kalathos") {
+        }else if (line == "kalathos") {
             vase_ = kalathos;
         }
     }
@@ -433,22 +425,6 @@ void Vase::LoadFile(std::string filename) {
     // load vase
     //vase_.clear();
      while(std::getline(saveFile, line) && row != 20) {
-        // vector<string> current_row;
-        // // size_t col = 0;
-        // //std::cout << line << std::endl;
-        // for(size_t col = 0; col < 40; col++) {
-        //     //std::cout << line.substr(col, 1);
-        //     string c;
-        //     c = line.substr(col, 1);
-        //     current_row.push_back(c);
-        //     //std::cout << c <<std::endl;
-        // }
-        // //std::cout << std::endl;
-        // vase_.push_back(current_row);
-        // for(size_t i = 0; i < vase_[row].size(); i++) {
-        //     //std::cout << vase_[row][i];
-        // }
-        // //std::cout << std::endl;
         row++;
     }
     // get day, mood, weather
@@ -511,15 +487,13 @@ void Vase::LoadFile(std::string filename) {
             break;
         }
     }
-    //std::cout << line << std::endl;
+
+
     //load shiny_vec_ of each shiny by looping shiny_vec_size times and copying the value at each row and col 
     for(int i = 0; i < shiny_vec_size; i++){
         int row3 = 0;
-        //shiny_vec[i]->shiny_vec_.clear();
         while(std::getline(saveFile, line) && row3 < 20) {
-            //std::cout << (line.substr(0, 1) == "") << std::endl;
             if(line.substr(0, 1) != "") {
-                //std::cout << row3 << std::endl;
                 std::stringstream shinyvecss(line);
                 std::string shinypos;
                 std::vector<std::string> shinys;
@@ -528,30 +502,23 @@ void Vase::LoadFile(std::string filename) {
                 }
                 for(size_t numshiny = 0; numshiny < shinys.size() / 3; numshiny++) {
                     shiny_vec[i]->shiny_vec_[std::stoi(shinys[3*numshiny + 1])][std::stoi(shinys[3*numshiny + 2])] = shinys[0];
-                    //std::cout << std::stoi(shinys[3*numshiny + 1]) << " " << std::stoi(shinys[3*numshiny + 2]) << " " << shinys[0] << std::endl;
                 }
             }
             row3++;
             if(row3 == 20) {
                 break;
             }
-            //std::cout << std::endl;
         }
     }
 
 
 }
 
-
-
 Vase::~Vase() {
     for (Shiny* shiny : shiny_vec) {
         delete shiny;
     }
 }
-
-
-
  
 const vector<vector<string>> Vase::stamnos = 
        {{" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
@@ -576,65 +543,27 @@ const vector<vector<string>> Vase::stamnos =
         {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "‾", "‾", "⎛", " ", " ", " ", " ", " ", " ", " ", "⎞", "‾", "‾", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
         {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "‾", "‾", "‾", "‾", "‾", "‾", "‾", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
         };
-// {
-//     {"                                        "},
-//     {"                                        "},
-//     {"                                        "},
-//     {"                                        "},
-//     {"                                        "},
-//     {"                                        "},
-//     {"                                        "},
-//     {"                                        "},
-//     {"                                        "},
-//     {"                                        "},
-//     {"                                        "},
-//     {"           ⎛_             _⎞            "},
-//     {"           __|           |__            "},
-//     {"          ⎛                 ⎞           "},
-//     {"       ⎛‾‾                   ‾‾⎞        "},
-//     {"        ‾‾⎝                 ⎠‾‾         "},
-//     {"           \\               /            "},
-//     {"            \\            /             "},
-//     {"              ‾‾⎛      ⎞‾‾                "},
-//     {"                 ‾‾‾‾‾‾                 "}
-// };
 
-
-
-
-// to be drawn (note: have to be a closed vase)
-const vector<vector<string>> Vase::amphora = 
-        {{}};
-
-// to be drawn (note: have to be a closed vase)
 const vector<vector<string>> Vase::kalathos = 
-        {{}};
+       {{" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "⎞", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "⎛", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "\\", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "/", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "," "},
 
-// vector<vector<string>> vase::kalathos = 
-//         {{}};
-// string row1 = "___                     ___";
-    
-// string row2 = "   ⎞                  ⎛   ";
-
-// string row3 = "    ⎞                ⎛    ";
-
-// string row4 = "     ⎞              ⎛     ";
-// string row5 = "      |             |      ";
-// string row6 = "      |             |      ";
-// string row7 = "      |             |      ";
-
-// string row8 = "      ⎞             ⎛     ";
-// string row9 = "      _⎛___________⎞_     ";
-// std::vector<std::string> rows = {row1, row2, row3, row4, row5, row6, row7, row8, row9};
-
-// for (auto row : rows) {
-//     vector<string> vectorrow;
-//     for(size_t col = 0; col < row.length(); col++) {
-//         string c;
-//         c.push_back(row[col]);
-//         vectorrow.push_back(c);
-//     }
-//     kalathos.push_back(vectorrow);
-// }
-
-
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "⎞", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "⎛", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},    
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "\\", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "/", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "}, 
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "⎞", " ", " ", " ", " ", " ", " ", " ", " ", " ", "⎛", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "}, 
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "⎞", " ", " ", " ", " ", " ", " ", " ", " ", " ", "⎛", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "⎛", " ", " ", " ", " ", " ", " ", " ", " ", " ", "⎞", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+        {" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "‾", "‾", "‾", "‾", "‾", "‾", "‾", "‾", "‾", "‾", "‾", "‾", "‾", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "},
+        };
