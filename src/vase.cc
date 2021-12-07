@@ -418,7 +418,12 @@ void Vase::LoadFile(std::string filename) {
         string unicode = shiny[2];
         string log;
         for(size_t word = 4; word < shiny.size(); word++) {
-            log += shiny[word] + " ";
+            if(word != shiny.size() - 1) {
+                log += shiny[word] + " ";
+            }
+            else {
+                log += shiny[word];
+            }
         }
         Shiny* new_shiny = new Shiny(num_shiny, unicode, log);
         shiny_vec.push_back(new_shiny);
