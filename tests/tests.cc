@@ -132,6 +132,8 @@ TEST_CASE("Delete Shiny and undo"){
 TEST_CASE("Save and Load"){
     bool check = false;
     Vase* original_vase = new Vase(0, 12, 25, 2002, "Monday", "Happy", "Rain");
+    original_vase->addShiny(25,"$","MP");
+    original_vase->addShiny(20,"!","TRA");
     original_vase->SaveFile();
     Vase* loaded_vase = new Vase(1, 1, 1,2002, "Sunday", "Sad", "Sunny");
     loaded_vase->LoadFile("./storage/12_25_2002");
@@ -139,6 +141,37 @@ TEST_CASE("Save and Load"){
         if(loaded_vase->GetDate() == 25 && loaded_vase->GetMonth() == 12 && loaded_vase->GetYear() == 2002){
             check = true;
         } 
+        SECTION("Day, Mood, Weather Load") {
+            bool check2 = false;
+            if(loaded_vase->GetDay() == original_vase->GetDay() && loaded_vase->GetMood() == original_vase->GetMood() && loaded_vase->GetWeather() == original_vase->GetWeather()) {
+                check2 = true;
+            }
+            REQUIRE(check2);
+        }
+        SECTION("Shiny vector Load") {
+            bool check3 = true;
+            vector<Shiny*> loaded_shiny_vec = loaded_vase->GetShinyvector();
+            vector<Shiny*> original_shiny_vec = original_vase->GetShinyvector();
+            for(size_t i = 0; i < original_shiny_vec.size(); i++) {
+                    if(loaded_shiny_vec[i]->num_shiny_ != original_shiny_vec[i]->num_shiny_){
+                        check3 = false;
+                    }
+                    if(loaded_shiny_vec[i]->unicode_ != original_shiny_vec[i]->unicode_){
+                        check3 = false;
+                    }
+                    if(loaded_shiny_vec[i]->log_ != original_shiny_vec[i]->log_){
+                        check3 = false;
+                    }
+                    for(size_t row = 0; row < original_shiny_vec[i]->shiny_vec_.size(); row++) {
+                            for(size_t col = 0; col < original_shiny_vec[i]->shiny_vec_[row].size(); col++) {
+                                if(loaded_shiny_vec[i]->shiny_vec_[row][col] != original_shiny_vec[i]->shiny_vec_[row][col]) {
+                                    check3 = false;
+                                }
+                            }
+                    }
+            }
+            REQUIRE(check3);
+        }
     }
     REQUIRE(check == true);
 }
