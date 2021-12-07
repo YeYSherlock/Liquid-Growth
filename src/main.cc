@@ -12,6 +12,8 @@
 #include <sstream>
 #include <iterator>
 #include <filesystem>
+#include <fstream>
+#include <cstdio>
 
 using std::stoi;
 using std::cout; using std::cin;
@@ -38,10 +40,21 @@ int main() {
     
     // loading all files into saved_files_vec
     string path = "storage";
+
+    // for (const auto & file : directory_iterator(path)) {
+    //     if (!std::filesystem::is_empty(file)) {
+    //         std::cout << "once" << std::endl;
+    //         collection.AddAtDate(01, 01, 3000, 0);
+    //     }
+
+    // }
+
+    // return 0;
     for (const auto & file : directory_iterator(path)) {
-        
-        collection.AddAtDate(01, 01, 3000, 0);
-        collection.CurrVase()->LoadFile(file.path());
+        if (!std::filesystem::is_empty(file)) {
+            collection.AddAtDate(01, 01, 3000, 0);
+            collection.CurrVase()->LoadFile(file.path());
+        }
 
     }
 
@@ -57,9 +70,15 @@ int main() {
     std::cout << "| |    __╲╲Liquid╲╲\\ᛥ/╱╱Growth╱╱__     | |" << std::endl;
     std::cout << "| |                                    | |" << std::endl;
     std::cout << "+----------------------------------------+" << std::endl;
-    std::cout << "   [type \"start\" to begin the journey]    " << std::endl;
-    std::cout << "     [type \"help\" to check commands]      " << std::endl;
+    // std::cout << "   [type \"start\" to begin the journey]    " << std::endl;
+    // std::cout << "     [type \"help\" to check commands]      " << std::endl;
 
+    if (std::filesystem::is_empty(path)) {
+        std::cout << "[You have no vases. Type \"build m d y V\" to build one!]    " << std::endl;
+    } else {
+        std::cout << "   [type \"start\" to begin the journey]    " << std::endl;
+        std::cout << "     [type \"help\" to check commands]      " << std::endl;
+    }
 
     while (true) {
         // record user input
