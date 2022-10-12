@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libtest_liquid_growth.a CMakeFiles/test_liquid_growth.dir/tests/catch.cc.o CMakeFiles/test_liquid_growth.dir/tests/tests.cc.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libtest_liquid_growth.a
