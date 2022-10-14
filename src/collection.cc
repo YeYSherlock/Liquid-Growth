@@ -1,6 +1,7 @@
 #include "collection.hpp"
 
-
+/// @brief asdf
+/// @return asdf
 Vase* Collection::CurrVase() {
     try {
         return all_vases_[vase_idx_];
@@ -112,6 +113,10 @@ void Collection::AddAtDate(size_t month, size_t date, size_t year, size_t templa
 
 }
 
+/**
+ * @brief asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfas
+ * 
+ */
 void Collection::ToString() {
     all_vases_.at(vase_idx_)->ToString();
 }

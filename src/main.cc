@@ -12,6 +12,8 @@
 #include <sstream>
 #include <iterator>
 #include <filesystem>
+// #include <boost/filesystem.hpp>
+// #include <boost/range/iterator_range.hpp>
 #include <fstream>
 #include <cstdio>
 
@@ -22,9 +24,26 @@ using std::filesystem::directory_iterator;
 
 #define print(s) std::cout << s << std::endl;
 
+/*! \mainpage My Personal Index Page
+ *
+ * \section intro_sec Introduction
+ *
+ * This is the introduction.
+ *
+ * \section install_sec Installation
+ *
+ * \subsection step1 Step 1: Opening the box
+ *
+ * etc...
+ */
 
 
-
+/**
+ * @brief main function.
+ * @see collection.hpp shiny.hpp vase.hpp
+ * @return int, 0 to terminate program. 
+ * 
+ */
 int main() {
 
 
@@ -246,4 +265,21 @@ int main() {
 
 
 
+/**
+ * @brief Here is a brief description. Remember that *markdown* is **enable**. This is in main.cc
+ * @note document the interface in the header. The Gory details of the how and why in the source.
+ * 
+ * @param a does something
+ * @param b does another thing
+ * @param c does the other thing
+ * @returns void
+ * 
+ * @see main() collection.hpp shiny.hpp vase.hpp
+ * @attention here is an attention
+ * @warning here is a warning
+ */
+void DoxygenReference(int a, int b, int c) {
 
+
+    
+}

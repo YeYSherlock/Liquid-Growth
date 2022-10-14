@@ -4,7 +4,7 @@
 # compile CXX with /Library/Developer/CommandLineTools/usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I"/Users/bradyang/Desktop/Liquid Growth/Liquid-Growth/tests" -I"/Users/bradyang/Desktop/Liquid Growth/Liquid-Growth/includes"
+CXX_INCLUDES = -I"/Users/bradyang/Desktop/Liquid Growth/Liquid-Growth/tests" -I"/Users/bradyang/Desktop/Liquid Growth/Liquid-Growth/includes" -I"/Users/bradyang/Desktop/Liquid Growth/Liquid-Growth/storage"
 
 CXX_FLAGSx86_64 =  -arch x86_64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -std=gnu++20
 
