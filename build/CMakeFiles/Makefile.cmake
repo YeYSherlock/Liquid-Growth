@@ -21,12 +21,19 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/local/Cellar/cmake/3.24.2/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
   "/usr/local/Cellar/cmake/3.24.2/share/cmake/Modules/Compiler/Clang.cmake"
   "/usr/local/Cellar/cmake/3.24.2/share/cmake/Modules/Compiler/GNU.cmake"
+  "/usr/local/Cellar/cmake/3.24.2/share/cmake/Modules/FindBoost.cmake"
+  "/usr/local/Cellar/cmake/3.24.2/share/cmake/Modules/FindPackageHandleStandardArgs.cmake"
+  "/usr/local/Cellar/cmake/3.24.2/share/cmake/Modules/FindPackageMessage.cmake"
   "/usr/local/Cellar/cmake/3.24.2/share/cmake/Modules/Platform/Apple-AppleClang-CXX.cmake"
   "/usr/local/Cellar/cmake/3.24.2/share/cmake/Modules/Platform/Apple-Clang-CXX.cmake"
   "/usr/local/Cellar/cmake/3.24.2/share/cmake/Modules/Platform/Apple-Clang.cmake"
   "/usr/local/Cellar/cmake/3.24.2/share/cmake/Modules/Platform/Darwin-Initialize.cmake"
   "/usr/local/Cellar/cmake/3.24.2/share/cmake/Modules/Platform/Darwin.cmake"
   "/usr/local/Cellar/cmake/3.24.2/share/cmake/Modules/Platform/UnixPaths.cmake"
+  "/usr/local/lib/cmake/Boost-1.80.0/BoostConfig.cmake"
+  "/usr/local/lib/cmake/Boost-1.80.0/BoostConfigVersion.cmake"
+  "/usr/local/lib/cmake/boost_headers-1.80.0/boost_headers-config-version.cmake"
+  "/usr/local/lib/cmake/boost_headers-1.80.0/boost_headers-config.cmake"
   )
 
 # The corresponding makefile is:

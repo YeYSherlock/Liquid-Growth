@@ -14,6 +14,12 @@
 # EXTERNAL cache entries
 ########################
 
+//The directory containing a CMake configuration file for Boost.
+Boost_DIR:PATH=/usr/local/lib/cmake/Boost-1.80.0
+
+//Path to a file.
+Boost_INCLUDE_DIR:PATH=/usr/local/include
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=CMAKE_ADDR2LINE-NOTFOUND
 
@@ -210,6 +216,12 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 //Path to a library.
 FOO_LIB:FILEPATH=FOO_LIB-NOTFOUND
 
+//The directory containing a CMake configuration file for FileSystemConfig.cmake.
+FileSystemConfig.cmake_DIR:PATH=FileSystemConfig.cmake_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for FileSystem.
+FileSystem_DIR:PATH=FileSystem_DIR-NOTFOUND
+
 //The directory containing a CMake configuration file for Filesystem.
 Filesystem_DIR:PATH=Filesystem_DIR-NOTFOUND
 
@@ -222,11 +234,18 @@ LiquidGrowth_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 LiquidGrowth_SOURCE_DIR:STATIC=/Users/bradyang/Desktop/Liquid Growth/Liquid-Growth
 
+//The directory containing a CMake configuration file for boost_headers.
+boost_headers_DIR:PATH=/usr/local/lib/cmake/boost_headers-1.80.0
+
 
 ########################
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: Boost_DIR
+Boost_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_INCLUDE_DIR
+Boost_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_ADDR2LINE
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
@@ -352,4 +371,16 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding Boost
+FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/usr/local/lib/cmake/Boost-1.80.0/BoostConfig.cmake][c ][v1.80.0()]
+//Components requested for this build tree.
+_Boost_COMPONENTS_SEARCHED:INTERNAL=
+//Last used Boost_INCLUDE_DIR value.
+_Boost_INCLUDE_DIR_LAST:INTERNAL=Boost_INCLUDE_DIR-NOTFOUND
+//Last used Boost_NAMESPACE value.
+_Boost_NAMESPACE_LAST:INTERNAL=boost
+//Last used Boost_USE_MULTITHREADED value.
+_Boost_USE_MULTITHREADED_LAST:INTERNAL=TRUE
+//ADVANCED property for variable: boost_headers_DIR
+boost_headers_DIR-ADVANCED:INTERNAL=1
 
