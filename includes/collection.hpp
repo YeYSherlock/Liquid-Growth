@@ -3,6 +3,7 @@
 
 // enum mode {main_menu, daily, exhibition};
 
+/// @brief 
 class Collection {
 public:
 
@@ -44,7 +45,8 @@ public:
     // change mode
     // void SetMode(mode setMode);
 
-    /***** Hidden Support *****/
+    /// @todo probably change all hidden support to protected later. 
+    /***** Hidden Support *****/ 
     
     // print the current vase
     void ToString();

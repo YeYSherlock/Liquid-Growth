@@ -1,2 +1,2 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc liblib_liquid_growth.a CMakeFiles/lib_liquid_growth.dir/src/shiny.cc.o CMakeFiles/lib_liquid_growth.dir/src/vase.cc.o CMakeFiles/lib_liquid_growth.dir/src/collection.cc.o
-/Library/Developer/CommandLineTools/usr/bin/ranlib liblib_liquid_growth.a
+/usr/bin/ar qc liblib_liquid_growth.a CMakeFiles/lib_liquid_growth.dir/src/shiny.cc.o CMakeFiles/lib_liquid_growth.dir/src/vase.cc.o CMakeFiles/lib_liquid_growth.dir/src/collection.cc.o
+/usr/bin/ranlib liblib_liquid_growth.a
